@@ -39,7 +39,8 @@ const PROJECTS_DATA = [
     location: "Litoral Norte / Salvador, BA",
     area: "750 m²",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    desc: "Residência contemporânea de veraneio em concreto armado protendido e balanços estruturais audaciosos, projetada para total aproveitamento da brisa litorânea de Salvador."
+    desc: "Residência contemporânea de veraneio em concreto armado protendido e balanços estruturais audaciosos, projetada para total aproveitamento da brisa litorânea de Salvador.",
+    instaUrl: "https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM="
   },
   {
     id: 2,
@@ -51,7 +52,8 @@ const PROJECTS_DATA = [
     location: "Barra, Salvador, BA",
     area: "1.920 m²",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-    desc: "Retrofit técnico predial completo e compatibilização estrutural complexa para adequação de lajes corporativas integradas."
+    desc: "Retrofit técnico predial completo e compatibilização estrutural complexa para adequação de lajes corporativas integradas.",
+    instaUrl: "https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM="
   },
   {
     id: 3,
@@ -63,7 +65,8 @@ const PROJECTS_DATA = [
     location: "Corredor da Vitória, Salvador, BA",
     area: "380 m²",
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-    desc: "Reforma residencial de altíssimo padrão com integração de vãos livres, revestimentos em mármores exóticos importados e acústica refinada."
+    desc: "Reforma residencial de altíssimo padrão com integração de vãos livres, revestimentos em mármores exóticos importados e acústica refinada.",
+    instaUrl: "https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM="
   },
   {
     id: 4,
@@ -75,7 +78,8 @@ const PROJECTS_DATA = [
     location: "Caminho das Árvores, Salvador, BA",
     area: "1.100 m²",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-    desc: "Desenvolvimento técnico predial com foco em eficiência térmica, estruturas metálicas ventiladas e integração de automação predial."
+    desc: "Desenvolvimento técnico predial com foco em eficiência térmica, estruturas metálicas ventiladas e integração de automação predial.",
+    instaUrl: "https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM="
   },
   {
     id: 5,
@@ -87,7 +91,8 @@ const PROJECTS_DATA = [
     location: "Horto Florestal, Salvador, BA",
     area: "920 m²",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-    desc: "Projeto estrutural arrojado com vãos livres de 12 metros, piscina suspensa em concreto aparente e aproveitamento solar inteligente."
+    desc: "Projeto estrutural arrojado com vãos livres de 12 metros, piscina suspensa em concreto aparente e aproveitamento solar inteligente.",
+    instaUrl: "https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM="
   },
   {
     id: 6,
@@ -99,7 +104,8 @@ const PROJECTS_DATA = [
     location: "Rio Vermelho, Salvador, BA",
     area: "750 m²",
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80",
-    desc: "Adequação civil complexa para clínica executiva de alta tecnologia, seguindo critérios rigorosos de isolamento acústico e estabilidade de rede."
+    desc: "Adequação civil complexa para clínica executiva de alta tecnologia, seguindo critérios rigorosos de isolamento acústico e estabilidade de rede.",
+    instaUrl: "https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM="
   }
 ];
 
@@ -315,8 +321,13 @@ export default function App() {
             ? 'glass-pill shadow-2xl py-2.5 border-emerald/15 translate-y-1' 
             : 'bg-transparent border-transparent'
         }`}>
-          {/* Logo oficial da Erguer com leve moldura e zoom discreto */}
-          <a href="#hero" className="flex items-center gap-3 group relative transition-transform duration-300 hover:scale-[1.03]">
+          {/* Logo oficial da Erguer direcionando diretamente para o Instagram da empresa */}
+          <a 
+            href="https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM=" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 group relative transition-transform duration-300 hover:scale-[1.03]"
+          >
             <div className="bg-obsidian-dark/40 border border-white/5 rounded-2xl p-1 md:p-1.5 backdrop-blur-sm">
               <img 
                 src="/logo-erguer.png" 
@@ -556,7 +567,7 @@ export default function App() {
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 w-full flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover text-black py-4 rounded-xl text-xs font-mono font-bold transition-colors magnetic-btn"
+                className="mt-6 w-full flex items-center justify-center gap-2 border border-white/20 hover:border-[#00FF66]/50 bg-black/40 text-white hover:text-[#00FF66] py-4 rounded-xl text-xs font-mono font-extrabold transition-all duration-300 magnetic-btn"
               >
                 SOLICITAR ORÇAMENTO DESTE PERFIL
                 <ArrowRight size={14} />
@@ -703,13 +714,25 @@ export default function App() {
                     href={getWhatsAppLink(`Olá Erguer! Fiquei extremamente interessado no projeto "${activeProject.title}" localizado em Salvador/BA. Gostaria de solicitar informações técnicas sobre soluções similares.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full text-center bg-emerald hover:bg-emerald-hover text-black py-4 rounded-xl text-xs font-mono font-bold transition-transform"
+                    className="w-full text-center bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] py-4 rounded-xl text-xs font-mono font-extrabold transition-all duration-300 shadow-md shadow-emerald/10 magnetic-btn"
                   >
                     INICIAR ESTUDO SEMELHANTE
                   </a>
+                  
+                  {activeProject.instaUrl && (
+                    <a 
+                      href={activeProject.instaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full text-center block border border-white/20 hover:border-[#00FF66]/50 bg-black/40 text-white hover:text-[#00FF66] py-3.5 rounded-xl text-xs font-mono font-extrabold transition-all duration-300"
+                    >
+                      VER PUBLICAÇÃO NO INSTAGRAM
+                    </a>
+                  )}
+                  
                   <button 
                     onClick={() => setActiveProject(null)}
-                    className="w-full text-center text-xs font-mono text-gray-500 hover:text-white"
+                    className="w-full text-center text-xs font-mono text-gray-500 hover:text-white pt-2"
                   >
                     Voltar para a galeria
                   </button>
