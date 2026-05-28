@@ -141,7 +141,7 @@ export default function App() {
   const typewriterLogs = [
     "AFERIÇÃO: Sincronizando nível a laser geométrico... [0.0mm ERRO]",
     "CONCRETAGEM: Aferição térmica de cura do concreto estrutural... [fck 38 MPa OK]",
-    "CRONOGRAMA: Logística de entrega de vigas de aço... [NO DELAYS - RASTREADO]",
+    "CRONOGRAMA: Logística de entrega de vigas de aço... [SEM ATRASOS - RASTREADO]",
     "ESTRUTURA: Verificação tridimensional de prumo de pilares... [CONFORME]",
     "CONTROLE: Inspeção de prumo de revestimentos em mármores importados... [APROVADO]",
   ];
@@ -149,39 +149,36 @@ export default function App() {
   // Efeito de Scroll da Navbar
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Efeito 3D de Rotação/Escala do Vídeo do Hero no Scroll - TOTALMENTE CONTROLADO PELO SCROLL
+  // Efeito 3D de Rotação/Escala do Vídeo do Hero no Scroll
   useEffect(() => {
     if (!heroVideoContainerRef.current) return;
 
-    // A rotação e a escala do vídeo ocorrem de forma imediata e controlada pelo scroll (gira e volta)
     gsap.fromTo(heroVideoContainerRef.current,
       {
         transform: "perspective(1200px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)",
         borderRadius: "0rem",
       },
       {
-        // Gira no eixo X e faz uma inclinação leve no Z para dar sensação 3D de maquete física
-        transform: "perspective(1200px) rotateX(15deg) rotateY(-4deg) rotateZ(2deg) scale(0.86)",
-        borderRadius: "3rem",
+        transform: "perspective(1200px) rotateX(12deg) rotateY(-3deg) rotateZ(1.5deg) scale(0.88)",
+        borderRadius: "2.5rem",
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
           end: "bottom top",
-          scrub: 0.5, // Resposta rápida e suave (gira e volta rápido)
+          scrub: 0.4,
         }
       }
     );
 
-    // Efeito de fade sutil no vídeo para focar no conteúdo de baixo
     gsap.to(heroVideoRef.current, {
-      opacity: 0.45,
-      y: 50,
+      opacity: 0.4,
+      y: 40,
       scrollTrigger: {
         trigger: "#hero",
         start: "top top",
@@ -199,8 +196,8 @@ export default function App() {
       const cards = shufflerContainerRef.current?.children;
       if (cards) {
         gsap.fromTo(cards, 
-          { y: 15, opacity: 0, scale: 0.97 },
-          { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out", stagger: 0.05 }
+          { y: 12, opacity: 0, scale: 0.98 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power2.out", stagger: 0.04 }
         );
       }
     }, 4000);
@@ -217,11 +214,11 @@ export default function App() {
       if (charIndex <= currentText.length) {
         setTypewriterText(currentText.substring(0, charIndex));
         charIndex++;
-        timer = setTimeout(type, 25);
+        timer = setTimeout(type, 20);
       } else {
         timer = setTimeout(() => {
           setTypewriterIndex(prev => (prev + 1) % typewriterLogs.length);
-        }, 2800);
+        }, 2600);
       }
     };
     type();
@@ -264,16 +261,16 @@ export default function App() {
     const textEl = philosophyTextRef.current;
     
     gsap.fromTo(textEl.querySelectorAll('.split-line'),
-      { y: 30, opacity: 0 },
+      { y: 25, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.7,
-        stagger: 0.12,
+        duration: 0.6,
+        stagger: 0.1,
         ease: "power2.out",
         scrollTrigger: {
           trigger: textEl,
-          start: "top 90%",
+          start: "top 95%",
           toggleActions: "play none none none"
         }
       }
@@ -312,13 +309,13 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen selection:bg-emerald/30 selection:text-emerald">
+    <div className="relative min-h-screen selection:bg-emerald/30 selection:text-emerald bg-obsidian">
       
       {/* A. NAVBAR — "A Ilha Flutuante" */}
       <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-500">
-        <nav className={`w-full max-w-5xl rounded-full px-6 py-4 flex items-center justify-between transition-all duration-500 ${
+        <nav className={`w-full max-w-5xl rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 flex items-center justify-between transition-all duration-500 ${
           isScrolled 
-            ? 'glass-pill shadow-2xl py-2.5 border-emerald/15 translate-y-1' 
+            ? 'glass-pill shadow-2xl border-emerald/15 translate-y-1' 
             : 'bg-transparent border-transparent'
         }`}>
           {/* Logo oficial da Erguer direcionando diretamente para o Instagram da empresa */}
@@ -326,13 +323,13 @@ export default function App() {
             href="https://www.instagram.com/erguer_projetos_eng?igsh=aGZrZWhoeTJjYjM=" 
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 group relative transition-transform duration-300 hover:scale-[1.03]"
+            className="flex items-center gap-3 group relative transition-transform duration-300 hover:scale-[1.02]"
           >
-            <div className="bg-obsidian-dark/40 border border-white/5 rounded-2xl p-1 md:p-1.5 backdrop-blur-sm">
+            <div className="bg-obsidian-dark/40 border border-white/5 rounded-2xl p-1 sm:p-1.5 backdrop-blur-sm">
               <img 
                 src="/logo-erguer.png" 
                 alt="Erguer Projetos e Engenharia" 
-                className="h-9 sm:h-11 md:h-12 w-auto object-contain"
+                className="h-8 sm:h-10 md:h-11 w-auto object-contain"
               />
             </div>
           </a>
@@ -346,23 +343,24 @@ export default function App() {
             <a href="#solutions" className="hover:text-emerald transition-colors">/ESTUDOS_3D</a>
           </div>
 
-          {/* CTA Link WhatsApp */}
+          {/* CTA Link WhatsApp - Adaptável para mobile para não estourar a tela */}
           <a 
             href={getWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-btn btn-slide-bg flex items-center gap-2 bg-emerald hover:bg-emerald-hover text-black text-[10px] md:text-xs font-mono font-bold px-4 md:px-5 py-2.5 rounded-full"
+            className="magnetic-btn btn-slide-bg flex items-center gap-2 bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] text-[10px] md:text-xs font-mono font-extrabold px-3.5 sm:px-5 py-2.5 rounded-full whitespace-nowrap shadow-md shadow-emerald/10"
           >
-            FALAR COM ENGENHEIRO
-            <ArrowRight size={14} />
+            <span className="hidden sm:inline">FALAR COM ENGENHEIRO</span>
+            <span className="inline sm:hidden">CONTATO</span>
+            <ArrowRight size={13} />
           </a>
         </nav>
       </header>
 
-      {/* B. HERO SECTION — Vídeo Rotativo 3D Controlado pelo Scroll */}
-      <section id="hero" className="relative h-[100dvh] w-full flex flex-col justify-end px-6 md:px-16 pb-20 overflow-hidden bg-obsidian-dark">
+      {/* B. HERO SECTION — Vídeo Parallax e Responsivo */}
+      <section id="hero" className="relative h-[80dvh] sm:h-[85dvh] md:h-[100dvh] w-full flex flex-col justify-end px-4 sm:px-6 md:px-16 pb-12 sm:pb-20 overflow-hidden bg-obsidian-dark">
         
-        {/* Container do vídeo com transformação 3D e rotação no scroll (Gira e Volta) */}
+        {/* Container do vídeo com proporções e ajustes de corte no mobile */}
         <div 
           ref={heroVideoContainerRef} 
           className="absolute inset-0 overflow-hidden z-0 transition-all duration-300 ease-out origin-center"
@@ -374,65 +372,62 @@ export default function App() {
             loop 
             muted 
             playsInline 
-            className="w-full h-full object-cover opacity-40 filter contrast-110 scale-102"
+            className="w-full h-full object-cover opacity-45 filter contrast-110 scale-102 object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/75 to-transparent"></div>
         </div>
 
         {/* Tipografia de Alto Padrão - Blend de Preto, Dourado e Verde */}
         <div className="relative z-20 w-full max-w-4xl flex flex-col items-start mt-20">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-emerald/30 bg-emerald/5 mb-6">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-emerald/30 bg-emerald/5 mb-4 sm:mb-6">
             <MapPin size={11} className="text-emerald animate-pulse" />
             <span className="text-[9px] font-mono text-emerald tracking-widest uppercase font-bold">SALVADOR, BAHIA</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-outfit text-white tracking-tight leading-[0.85] mb-4">
-            <span className="bg-gradient-to-r from-[#C9A84C] via-[#00FF66] to-[#C9A84C] bg-[length:200%_auto] bg-clip-text text-transparent animate-metallic-shine font-black tracking-tighter">
-              Erguer
-            </span>{" "}
-            é a
-            <span className="text-drama text-champagne italic font-light lowercase text-5xl sm:text-7xl md:text-8xl lg:text-9xl mt-2 tracking-normal block">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black font-outfit text-white tracking-tight leading-[0.85] mb-4">
+            Erguer é a
+            <span className="text-drama text-champagne italic font-light lowercase text-4xl sm:text-6xl md:text-8xl lg:text-9xl mt-2 tracking-normal block">
               precisão que desafia o <span className="text-emerald font-serif">tempo</span>.
             </span>
           </h1>
 
-          <p className="text-xs sm:text-sm md:text-base font-sans text-gray-400 max-w-xl mb-8 leading-relaxed">
+          <p className="text-[11px] sm:text-sm md:text-base font-sans text-gray-400 max-w-xl mb-6 sm:mb-8 leading-relaxed">
             Engenharia civil de precisão e obras de alto padrão residencial e comercial. 
             Fusão impecável de <span className="text-champagne font-semibold">arquitetura autoral de luxo</span> com <span className="text-emerald font-semibold">segurança estrutural absoluta</span>.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
             <a 
               href="#icp" 
-              className="magnetic-btn btn-slide-bg flex items-center justify-center gap-3 bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] text-xs font-mono font-bold px-8 py-4 rounded-full shadow-lg shadow-emerald/10 text-center"
+              className="magnetic-btn btn-slide-bg flex items-center justify-center gap-3 bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] text-xs font-mono font-bold px-8 py-3.5 sm:py-4 rounded-full shadow-lg shadow-emerald/10 text-center"
             >
               PARAMETRIZAR PROJETO (ICP)
-              <Sliders size={16} />
+              <Sliders size={15} />
             </a>
             <a 
               href="#features" 
-              className="magnetic-btn flex items-center justify-center gap-2 border border-emerald/20 hover:border-emerald bg-transparent text-white hover:text-emerald text-xs font-mono px-8 py-4 rounded-full transition-all text-center"
+              className="magnetic-btn flex items-center justify-center gap-2 border border-emerald/20 hover:border-emerald bg-transparent text-white hover:text-emerald text-xs font-mono px-8 py-3.5 sm:py-4 rounded-full transition-all text-center"
             >
               /VER_TECNOLOGIAS
             </a>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Indicadores Estéticos */}
         <div className="absolute right-8 bottom-8 hidden lg:flex flex-col items-end gap-2 font-mono text-[9px] text-gray-500 z-20">
-          <span className="flex items-center gap-1.5 text-emerald"><Video size={10} /> HERO_VIDEO // CONTROLANDO NO SCROLL</span>
-          <span>LOCATION_LAT: -12.9777° S | LON: -38.5016° W</span>
+          <span className="flex items-center gap-1.5 text-emerald"><Video size={10} /> 🏗️ VÍDEO DO PROJETO // INTERAÇÃO NO SCROLL</span>
+          <span>LAT: -12.9777° S | LON: -38.5016° W</span>
         </div>
       </section>
 
-      {/* C. ICP DYNAMIC FILTER + PINTEREST SHOWCASE */}
-      <section id="icp" className="relative py-24 px-4 sm:px-6 md:px-16 bg-obsidian border-t border-obsidian-border">
+      {/* C. ICP DYNAMIC FILTER + PINTEREST SHOWCASE (py-8 sm:py-12 md:py-14 para diminuir espaçamento) */}
+      <section id="icp" className="relative py-8 sm:py-12 md:py-14 px-4 sm:px-6 md:px-16 bg-obsidian border-t border-obsidian-border">
         <div className="max-w-7xl mx-auto">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4 sm:gap-6">
             <div className="flex flex-col">
               <span className="text-xs font-mono text-emerald tracking-widest uppercase">CONCURSO DE PROJETOS</span>
-              <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
+              <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-1">
                 O que planeja <span className="text-drama text-champagne italic font-light lowercase">construir</span> em Salvador?
               </h2>
             </div>
@@ -562,7 +557,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Botão de Enviar Dados via WhatsApp */}
+              {/* Botão Sem fundo Verde - Apenas Letras Brancas de Alto Contraste */}
               <a 
                 href={getWhatsAppLink()}
                 target="_blank"
@@ -710,6 +705,7 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col gap-3">
+                  {/* Sem fundo verde: apenas bordas e letras verdes esmeralda no contorno */}
                   <a 
                     href={getWhatsAppLink(`Olá Erguer! Fiquei extremamente interessado no projeto "${activeProject.title}" localizado em Salvador/BA. Gostaria de solicitar informações técnicas sobre soluções similares.`)}
                     target="_blank"
@@ -746,16 +742,16 @@ export default function App() {
 
       </section>
 
-      {/* D. FEATURES — "Instrumentos de Controle" (Preto, Dourado e Verde) */}
-      <section id="features" className="relative py-24 px-4 sm:px-6 md:px-16 bg-obsidian-dark border-t border-obsidian-border">
+      {/* D. FEATURES (py-8 sm:py-12 md:py-14 para reduzir espaçamento e aproximar do manifesto) */}
+      <section id="features" className="relative py-8 sm:py-12 md:py-14 px-4 sm:px-6 md:px-16 bg-obsidian-dark border-t border-obsidian-border">
         <div className="max-w-7xl mx-auto">
           
-          <div className="flex flex-col mb-16 max-w-xl">
+          <div className="flex flex-col mb-10 max-w-xl">
             <span className="text-xs font-mono text-emerald tracking-widest uppercase">// TECNOLOGIA DE EXECUÇÃO CIVIL</span>
-            <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
+            <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-1">
               Nossa engenharia reduz <span className="text-drama text-champagne italic font-light lowercase">atritos em obra</span>.
             </h2>
-            <p className="text-xs sm:text-sm text-gray-400 mt-4 leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-400 mt-3 leading-relaxed">
               Erradicamos a improvisação em canteiros de obra. Substituímos suposições por compatibilização geométrica 3D rigorosa e controle rigoroso de tolerâncias de materiais.
             </p>
           </div>
@@ -871,32 +867,36 @@ export default function App() {
         </div>
       </section>
 
-      {/* E. PHILOSOPHY — "O Manifesto" (Preto, Dourado e Verde) */}
-      <section id="philosophy" className="relative py-28 px-4 sm:px-6 md:px-16 bg-obsidian-dark overflow-hidden text-center flex flex-col items-center justify-center">
+      {/* E. PHILOSOPHY — "O Manifesto" (Aproximado com py-8 sm:py-10 md:py-12 e 3 bolinhas + emojis) */}
+      <section id="philosophy" className="relative py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-16 bg-obsidian-dark overflow-hidden text-center flex flex-col items-center justify-center">
         {/* Imagem de textura sutil com efeito Parallax */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian-dark via-transparent to-obsidian-dark"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-          <div className="w-10 h-10 flex items-center justify-center border border-champagne/30 rounded-full mb-8 bg-emerald/5">
-            <Sparkles size={14} className="text-emerald animate-pulse" />
+          
+          {/* Novo Bloco de Identidade Sem Estrela de IA: 3 Bolinhas Coloridas e Emojis de Construção Civil de Luxo */}
+          <div className="flex items-center gap-3 justify-center mb-6 bg-black/40 px-5 py-2 border border-white/5 rounded-full backdrop-blur-sm shadow-inner shadow-black/80">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#00FF66] animate-pulse"></span>
+            <span className="text-lg">🏗️ 📐 🔨</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#C9A84C] animate-pulse"></span>
           </div>
 
-          <div ref={philosophyTextRef} className="flex flex-col gap-6 text-center">
+          <div ref={philosophyTextRef} className="flex flex-col gap-4 text-center">
             <p className="split-line text-[9px] font-mono text-emerald tracking-widest uppercase font-bold">
               // O MANIFESTO DA RIGIDEZ TÉCNICA
             </p>
             
-            <blockquote className="split-line text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-snug text-gray-300 px-2 sm:px-4">
+            <blockquote className="split-line text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light leading-snug text-gray-300 px-2 sm:px-4">
               "A maioria das construtoras foca apenas em empilhar materiais. Nós erguemos projetos blindando o cronograma através de
-              <span className="text-drama text-champagne italic font-light lowercase text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide px-3 inline-block">
+              <span className="text-drama text-champagne italic font-light lowercase text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-wide px-2 inline-block">
                 rigor técnico de controle
               </span> 
               e fidelidade à <span className="text-emerald">arquitetura autoral de alto padrão</span>."
             </blockquote>
           </div>
 
-          <div className="w-16 h-px bg-emerald/20 my-8"></div>
+          <div className="w-16 h-px bg-emerald/20 my-6"></div>
 
           <p className="text-[10px] font-mono text-gray-500 max-w-md">
             Consolidado na solidez estrutural e conformidade regulamentar. Da Bahia para quem valoriza a engenharia civil como um ativo de precisão.
@@ -904,43 +904,43 @@ export default function App() {
         </div>
       </section>
 
-      {/* F. PROTOCOL — "Metodologia Construtiva" (Substituindo vibes de TI por vibes de Construtora Civil de Luxo) */}
-      <section id="protocol" className="relative bg-obsidian py-24 px-4 sm:px-6 md:px-16 border-t border-obsidian-border">
+      {/* F. PROTOCOL — Metodologia (py-8 sm:py-12 md:py-14 para encurtar espaçamento) */}
+      <section id="protocol" className="relative bg-obsidian py-8 sm:py-12 md:py-14 px-4 sm:px-6 md:px-16 border-t border-obsidian-border">
         <div className="max-w-6xl mx-auto">
           
-          <div className="flex flex-col mb-16 max-w-xl">
-            <span className="text-xs font-mono text-emerald tracking-widest uppercase">// METODOLOGIA OPERACIONAL</span>
-            <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
+          <div className="flex flex-col mb-10 sm:mb-12 max-w-xl">
+            <span className="text-xs font-mono text-emerald tracking-widest uppercase">METODOLOGIA OPERACIONAL</span>
+            <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-1">
               Nosso protocolo de <span className="text-drama text-champagne italic font-light lowercase">obras exclusivas</span>.
             </h2>
-            <p className="text-xs sm:text-sm text-gray-400 mt-4 leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-400 mt-3 leading-relaxed">
               Estruturamos o ciclo de vida da construção civil para anular desperdícios, blindar orçamentos e assegurar uma entrega impecável e assistida pós-obra.
             </p>
           </div>
 
-          <div className="relative flex flex-col gap-12 sm:gap-24">
+          {/* Sistema Sticky Stacking utilizando CSS robusto e à prova de travamentos */}
+          <div className="relative flex flex-col gap-10 sm:gap-14">
             
             {/* ETAPA 01 */}
-            <div className="sticky top-28 bg-[#090f0c] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
+            <div className="sticky top-28 bg-[#090f0c] border border-emerald/10 rounded-[2.5rem] p-6 sm:p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 items-center min-h-[340px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
               <div className="w-full lg:w-1/2 flex flex-col items-start">
-                <span className="text-[10px] font-mono text-emerald tracking-wider font-bold">ETAPA 01 // LEVANTAMENTO TOPOGRÁFICO A LASER & MODELAGEM</span>
-                <h3 className="text-2xl md:text-4xl font-bold font-outfit text-white mt-3 mb-4">
+                <span className="text-[9px] font-mono text-emerald tracking-wider font-bold">ETAPA 01 // LEVANTAMENTO TOPOGRÁFICO A LASER & MODELAGEM</span>
+                <h3 className="text-xl sm:text-3xl font-bold font-outfit text-white mt-3 mb-3">
                   Topografia Tridimensional e Nuvem de Pontos
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4 sm:mb-6">
                   Capturamos a planimetria e altimetria do terreno em Salvador por meio de varredura a laser do local. Sincronizamos os dados diretamente para modelagem BIM, garantindo a concordância milimétrica da topografia real com o projeto de fundação.
                 </p>
-                <div className="flex flex-col gap-2 font-mono text-[10px] text-gray-500">
+                <div className="flex flex-col gap-1.5 font-mono text-[9px] text-gray-500">
                   <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> MAPEAMENTO DE NÍVEIS E DECLIVIDADES VIA SENSOR LASER</span>
                   <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> COMPATIBILIZAÇÃO MILIMÉTRICA DE CORTES E ATERROS</span>
                 </div>
               </div>
 
               {/* Desenho Técnico 1 */}
-              <div className="w-full lg:w-1/2 flex items-center justify-center h-48 sm:h-64 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
-                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">SYS_VIEW: TOPOGRAPHY_CONTOUR_LINES</div>
-                <svg className="w-36 h-36 animate-spin-slow stroke-emerald/30 fill-none" viewBox="0 0 100 100">
-                  {/* Curvas de nível topográficas */}
+              <div className="w-full lg:w-1/2 flex items-center justify-center h-44 sm:h-56 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
+                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">📐 PLANIMETRIA E CURVAS DE NÍVEL DO TERRENO</div>
+                <svg className="w-32 h-32 animate-spin-slow stroke-emerald/30 fill-none" viewBox="0 0 100 100">
                   <path d="M10,50 Q30,20 50,50 T90,50" strokeWidth="0.8" />
                   <path d="M20,50 Q35,30 50,50 T80,50" strokeWidth="1" strokeDasharray="3 3" />
                   <path d="M30,50 Q40,40 50,50 T70,50" strokeWidth="1.2" stroke="#C9A84C" />
@@ -951,27 +951,26 @@ export default function App() {
             </div>
 
             {/* ETAPA 02 */}
-            <div className="sticky top-32 bg-[#060c07] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
+            <div className="sticky top-32 bg-[#060c07] border border-emerald/10 rounded-[2.5rem] p-6 sm:p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 items-center min-h-[340px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
               <div className="w-full lg:w-1/2 flex flex-col items-start">
-                <span className="text-[10px] font-mono text-emerald tracking-wider font-bold">ETAPA 02 // RIGOR E COMPATIBILIZAÇÃO</span>
-                <h3 className="text-2xl md:text-4xl font-bold font-outfit text-white mt-3 mb-4">
-                  Compatibilização Estrutural e CÁLCULOS
+                <span className="text-[9px] font-mono text-emerald tracking-wider font-bold">ETAPA 02 // RIGOR E COMPATIBILIZAÇÃO</span>
+                <h3 className="text-xl sm:text-3xl font-bold font-outfit text-white mt-3 mb-3">
+                  Compatibilização Estrutural e Cálculos
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4 sm:mb-6">
                   Sobrepomos integralmente os projetos complementares estruturais, hidrossanitários, elétricos e de climatização. Eliminamos qualquer colisão física ou retrabalho de furação de vigas e lajes de concreto protendido.
                 </p>
-                <div className="flex flex-col gap-2 font-mono text-[10px] text-gray-500">
+                <div className="flex flex-col gap-1.5 font-mono text-[9px] text-gray-500">
                   <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> ARMAÇÃO DE AÇO E CONCRETO COMPATIBILIZADOS</span>
                   <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> 0% DE ADITIVOS DE CUSTO POR ERRO DE DETALHAMENTO</span>
                 </div>
               </div>
 
               {/* Desenho Técnico 2 */}
-              <div className="w-full lg:w-1/2 flex items-center justify-center h-48 sm:h-64 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
-                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">SYS_VIEW: STRUCTURAL_GRID_REINFORCEMENT</div>
+              <div className="w-full lg:w-1/2 flex items-center justify-center h-44 sm:h-56 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
+                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">🧱 COMPATIBILIZAÇÃO E DETALHAMENTO DE FERRAGENS</div>
                 <div className="absolute left-0 right-0 h-[1.5px] bg-emerald/60 shadow-md shadow-emerald animate-[bounce_4.5s_ease-in-out_infinite]"></div>
-                <svg className="w-48 h-28 stroke-emerald/20 fill-none" viewBox="0 0 100 60">
-                  {/* Grid de concreto armado / ferragens de viga */}
+                <svg className="w-44 h-24 stroke-emerald/20 fill-none" viewBox="0 0 100 60">
                   <g className="opacity-20" stroke="#C9A84C">
                     <line x1="10" y1="10" x2="90" y2="10" strokeWidth="1" />
                     <line x1="10" y1="30" x2="90" y2="30" strokeWidth="1" />
@@ -987,26 +986,25 @@ export default function App() {
             </div>
 
             {/* ETAPA 03 */}
-            <div className="sticky top-36 bg-[#050608] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
+            <div className="sticky top-36 bg-[#050608] border border-emerald/10 rounded-[2.5rem] p-6 sm:p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 items-center min-h-[340px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
               <div className="w-full lg:w-1/2 flex flex-col items-start">
-                <span className="text-[10px] font-mono text-emerald tracking-wider font-bold">ETAPA 03 // RIGOR DE ACABAMENTOS & LAUDOS</span>
-                <h3 className="text-2xl md:text-4xl font-bold font-outfit text-white mt-3 mb-4">
-                  Rigor de Prumos, Curing & Garantia
+                <span className="text-[9px] font-mono text-emerald tracking-wider font-bold">ETAPA 03 // RIGOR DE ACABAMENTOS & LAUDOS</span>
+                <h3 className="text-xl sm:text-3xl font-bold font-outfit text-white mt-3 mb-3">
+                  Rigor de Prumos, Cura & Garantia
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
-                  Executamos canteiros organizados com ensaios sistemáticos de tração, verificação termográfica infravermelha preventiva de instalações e acompanhamento fotográfico semanal das etapas de acabamentos finos. Entregamos com garantia contratual robusta de 5 anos.
+                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4 sm:mb-6">
+                  Executamos canteiros organizados com ensaios sistemáticos de tração, verificação termográfica infravermelha preventiva de instalações e acompanhamento fotográfico semanal das etapas de acabamentos finos. Entregamos com garantia contratual de 5 anos.
                 </p>
-                <div className="flex flex-col gap-2 font-mono text-[10px] text-gray-500">
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> RELATÓRIOS FOTOGRÁFICOS SEMANAIS INTEGRADOS NO PAINEL</span>
+                <div className="flex flex-col gap-1.5 font-mono text-[9px] text-gray-500">
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> RELATÓRIOS FOTOGRÁFICOS DE ANÁLISE SEMANAL INTEGRADOS NO PAINEL</span>
                   <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> LAUDO DE CONFORMIDADE TÉCNICA E GARANTIA DE 5 ANOS</span>
                 </div>
               </div>
 
               {/* Desenho Técnico 3 */}
-              <div className="w-full lg:w-1/2 flex items-center justify-center h-48 sm:h-64 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
-                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">SYS_VIEW: MECHANICAL_TENSION_CURING</div>
-                <svg className="w-52 h-24 stroke-emerald/30 fill-none" viewBox="0 0 200 80">
-                  {/* Curva de cura e resistência mecânica do concreto */}
+              <div className="w-full lg:w-1/2 flex items-center justify-center h-44 sm:h-56 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
+                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">🔨 CURVA DE RESISTÊNCIA DE CONCRETO PROTENDIDO</div>
+                <svg className="w-48 h-20 stroke-emerald/30 fill-none" viewBox="0 0 200 80">
                   <path d="M10,70 Q50,65 80,40 T150,15 T190,12" stroke="#C9A84C" strokeWidth="1.5" />
                   <path d="M10,70 Q50,70 80,45 T150,20 T190,15" stroke="#00FF66" strokeWidth="1" strokeDasharray="4 4" />
                   <line x1="10" y1="70" x2="190" y2="70" strokeWidth="0.5" />
@@ -1020,21 +1018,21 @@ export default function App() {
         </div>
       </section>
 
-      {/* G. SOLUTIONS / PRICING (Preto, Dourado e Verde) */}
-      <section id="solutions" className="relative py-24 px-4 sm:px-6 md:px-16 bg-obsidian-dark border-t border-obsidian-border">
+      {/* G. SOLUTIONS (py-8 sm:py-12 md:py-14 para reduzir espaçamento e compactar com o rodapé) */}
+      <section id="solutions" className="relative py-8 sm:py-12 md:py-14 px-4 sm:px-6 md:px-16 bg-obsidian-dark border-t border-obsidian-border">
         <div className="max-w-7xl mx-auto">
           
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
             <span className="text-xs font-mono text-emerald tracking-widest uppercase font-bold">// SERVIÇOS E ESTUDOS TÉCNICOS</span>
-            <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
+            <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-1">
               Nossas soluções de <span className="text-drama text-champagne italic font-light lowercase">engenharia civil</span>.
             </h2>
-            <p className="text-xs sm:text-sm text-gray-400 mt-4 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-400 mt-3 max-w-xl leading-relaxed">
               Diferentes frentes de atuação técnica estruturadas sob medida para viabilizar e fiscalizar obras residenciais e corporativas de alto padrão.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             
             {/* Tier 1 */}
             <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card transition-all duration-300 hover:border-champagne/20">
@@ -1130,11 +1128,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* H. FOOTER — "Painel de Controle Final" */}
-      <footer className="bg-obsidian-dark border-t border-obsidian-border pt-20 pb-12 px-4 sm:px-6 md:px-16 rounded-t-[3rem] sm:rounded-t-[4rem]">
-        <div className="max-w-7xl mx-auto flex flex-col gap-16">
+      {/* H. FOOTER — "Painel de Controle Final" (pt-12 pb-8 para compactar gaps) */}
+      <footer className="bg-obsidian-dark border-t border-obsidian-border pt-12 pb-8 px-4 sm:px-6 md:px-16 rounded-t-[3rem] sm:rounded-t-[4rem]">
+        <div className="max-w-7xl mx-auto flex flex-col gap-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
             
             {/* Bloco de identidade do rodapé */}
             <div className="lg:col-span-6 flex flex-col items-start gap-4">
@@ -1152,9 +1150,9 @@ export default function App() {
             </div>
 
             {/* Links Rápidos */}
-            <div className="lg:col-span-3 flex flex-col gap-4">
+            <div className="lg:col-span-3 flex flex-col gap-3">
               <span className="text-[9px] font-mono text-gray-500 tracking-widest uppercase">/NAVEGAÇÃO</span>
-              <ul className="flex flex-col gap-2.5 text-xs font-mono text-gray-400">
+              <ul className="flex flex-col gap-2 text-xs font-mono text-gray-400">
                 <li><a href="#hero" className="hover:text-emerald transition-colors">Retornar ao Topo</a></li>
                 <li><a href="#icp" className="hover:text-emerald transition-colors">Portfólio & Filtro ICP</a></li>
                 <li><a href="#features" className="hover:text-emerald transition-colors">Controles de Canteiro</a></li>
@@ -1163,9 +1161,9 @@ export default function App() {
             </div>
 
             {/* Redes e Contatos */}
-            <div className="lg:col-span-3 flex flex-col gap-4">
+            <div className="lg:col-span-3 flex flex-col gap-3">
               <span className="text-[9px] font-mono text-gray-500 tracking-widest uppercase">/CONTATO_E_REDES</span>
-              <ul className="flex flex-col gap-2.5 text-xs font-mono text-gray-400">
+              <ul className="flex flex-col gap-2 text-xs font-mono text-gray-400">
                 <li>
                   <a 
                     href="https://www.instagram.com/erguer_projetos_eng" 
@@ -1187,16 +1185,16 @@ export default function App() {
 
           </div>
 
-          {/* Barra de Sistema Operacional no rodapé */}
-          <div className="flex flex-col sm:flex-row items-center justify-between border-t border-obsidian-border pt-8 text-[9px] sm:text-[10px] font-mono text-gray-500 gap-4 text-center sm:text-left">
+          {/* Barra de Rodapé com Créditos da Agência XCompany */}
+          <div className="flex flex-col sm:flex-row items-center justify-between border-t border-white/5 pt-6 text-[9px] sm:text-[10px] font-mono text-gray-500 gap-4 text-center sm:text-left">
             <span>© {new Date().getFullYear()} ERGUER PROJETOS E ENGENHARIA. TODOS OS DIREITOS RESERVADOS.</span>
             
-            <div className="flex items-center gap-2 bg-black/60 px-3.5 py-1.5 border border-obsidian-border rounded-full">
+            <div className="flex items-center gap-2 bg-black/60 px-3.5 py-1.5 border border-white/5 rounded-full">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF66] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00FF66]"></span>
               </span>
-              <span>SYSTEM OPERATIONAL // 100% OK</span>
+              <span>FEITO POR AGÊNCIA XCOMPANY // PROJETOS ENTREGUES</span>
             </div>
           </div>
 
