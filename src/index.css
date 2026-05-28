@@ -109,9 +109,27 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Animação de Brilho Metálico Lento Shimmer */
-  .animate-metallic-shine {
-    animation: metallicShine 6s linear infinite;
+  /* Gradiente e Brilho Metálico Sincronizado Dourado e Verde */
+  .text-luxury-gradient {
+    background: linear-gradient(90deg, #C9A84C, #00FF66, #C9A84C);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: metallicShine 5s linear infinite;
+  }
+
+  .btn-luxury-gradient {
+    background: linear-gradient(90deg, #C9A84C, #00FF66, #C9A84C);
+    background-size: 200% auto;
+    color: #050508 !important;
+    animation: metallicShine 5s linear infinite;
+    font-weight: 800;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-position 0.6s;
+  }
+
+  .btn-luxury-gradient:hover {
+    transform: scale(1.03) translateY(-1px);
+    background-position: 100% 50%;
   }
 }
 

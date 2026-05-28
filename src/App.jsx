@@ -348,7 +348,7 @@ export default function App() {
             href={getWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-btn btn-slide-bg flex items-center gap-2 bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] text-[10px] md:text-xs font-mono font-extrabold px-3.5 sm:px-5 py-2.5 rounded-full whitespace-nowrap shadow-md shadow-emerald/10"
+            className="magnetic-btn btn-luxury-gradient flex items-center gap-2 text-[10px] md:text-xs font-mono font-extrabold px-3.5 sm:px-5 py-2.5 rounded-full whitespace-nowrap shadow-md shadow-emerald/10"
           >
             <span className="hidden sm:inline">FALAR COM ENGENHEIRO</span>
             <span className="inline sm:hidden">CONTATO</span>
@@ -385,7 +385,7 @@ export default function App() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black font-outfit text-white tracking-tight leading-[0.85] mb-4">
-            Erguer é a
+            <span className="text-luxury-gradient">Erguer</span> é a
             <span className="text-drama text-champagne italic font-light lowercase text-4xl sm:text-6xl md:text-8xl lg:text-9xl mt-2 tracking-normal block">
               precisão que desafia o <span className="text-emerald font-serif">tempo</span>.
             </span>
@@ -399,7 +399,7 @@ export default function App() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
             <a 
               href="#icp" 
-              className="magnetic-btn btn-slide-bg flex items-center justify-center gap-3 bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] text-xs font-mono font-bold px-8 py-3.5 sm:py-4 rounded-full shadow-lg shadow-emerald/10 text-center"
+              className="magnetic-btn btn-luxury-gradient flex items-center justify-center gap-3 text-xs font-mono font-bold px-8 py-3.5 sm:py-4 rounded-full shadow-lg shadow-emerald/10 text-center"
             >
               PARAMETRIZAR PROJETO (ICP)
               <Sliders size={15} />
@@ -1088,7 +1088,7 @@ export default function App() {
                   href={getWhatsAppLink("Olá Erguer! Gostaria de uma proposta para a 'Execução e Gestão de Obra Completa' da minha obra em Salvador.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center block bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] py-4 rounded-xl text-xs font-mono font-extrabold shadow-lg shadow-emerald/10 transition-all hover:scale-103 magnetic-btn"
+                  className="w-full text-center block btn-luxury-gradient py-4 rounded-xl text-xs font-mono font-extrabold shadow-lg shadow-emerald/10 transition-all hover:scale-103 magnetic-btn"
                 >
                   CONTRATAR ENGENHARIA COMPLETA
                 </a>
