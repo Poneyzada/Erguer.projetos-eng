@@ -7,11 +7,11 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #000000;
+    background-color: #050508;
   }
 
   body {
-    background-color: #000000;
+    background-color: #050508;
     color: #F3F4F6;
     overflow-x: hidden;
   }
@@ -27,7 +27,7 @@
     pointer-events: none;
     z-index: 9999;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.035;
+    opacity: 0.04;
   }
 
   /* Scrollbar Personalizada */
@@ -37,16 +37,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #000000;
+    background: #050508;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1F170C;
+    background: #14251B;
     border-radius: 99px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #C4A67B;
+    background: #00FF66;
   }
 }
 
@@ -57,7 +57,7 @@
   }
   
   .magnetic-btn:hover {
-    transform: scale(1.025) translateY(-1px);
+    transform: scale(1.03) translateY(-1px);
   }
 
   /* Botão de Slide Hover */
@@ -73,7 +73,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(250, 250, 250, 0.1), transparent);
     transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
@@ -83,28 +83,46 @@
 
   /* Tipografia Dramática */
   .text-drama {
-    font-family: "Space Grotesk", sans-serif;
-    letter-spacing: -0.03em;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 300;
   }
 
   /* Efeito Glassmorphism Premium */
   .glass-card {
-    background: rgba(10, 10, 10, 0.65);
+    background: rgba(11, 19, 14, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(196, 166, 123, 0.12);
+    border: 1px solid rgba(20, 37, 27, 0.35);
   }
 
   .glass-pill {
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(5, 5, 8, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(196, 166, 123, 0.2);
+    border: 1px solid rgba(20, 37, 27, 0.5);
   }
   
-  /* Texturas Bento Grid Masonry/Slider */
+  /* Texturas Pinterest Masonry/Slider */
   .pinterest-col {
     break-inside: avoid;
     margin-bottom: 1.5rem;
+  }
+
+  /* Animação de Brilho Metálico Lento Shimmer */
+  .animate-metallic-shine {
+    animation: metallicShine 6s linear infinite;
+  }
+}
+
+@keyframes metallicShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

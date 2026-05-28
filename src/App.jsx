@@ -12,96 +12,94 @@ import {
   Sliders,
   Sparkles,
   Maximize2,
-  Calendar,
-  ShieldCheck,
-  Video
+  Video,
+  FileText,
+  Activity
 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Registrar ScrollTrigger para o GSAP no navegador
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 /**
- * BANCO DE DADOS DE PROJETOS (ICP-BASED)
+ * BANCO DE DADOS DE PROJETOS DA ERGUER (FOCADO EM SALVADOR/BA)
  * =========================================================================
- * Mestre, você e o cliente podem alterar, adicionar ou remover projetos aqui.
- * As imagens usam links reais e de altíssima qualidade do Unsplash.
+ * Mestre, altere as fotos, nomes e dados dos projetos do cliente aqui facilmente!
  */
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: "Residência Atlântica",
-    type: "Arquitetura & Obra",
+    title: "Mansão Recôncavo",
+    type: "Arquitetura & Obra Civil",
     intent: "Construir do Zero",
     vocation: "Casa / Residencial de Luxo",
     priority: "Design Autoral & Exclusividade",
     location: "Litoral Norte / Salvador, BA",
-    area: "720 m²",
+    area: "750 m²",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    desc: "Estrutura em balanço com concreto aparente e painéis pivotantes de madeira ripada, projetada para otimizar a ventilação natural vinda da costa de Salvador."
+    desc: "Residência contemporânea de veraneio em concreto armado protendido e balanços estruturais audaciosos, projetada para total aproveitamento da brisa litorânea de Salvador."
   },
   {
     id: 2,
-    title: "Edifício Barra Corporate",
-    type: "Compatibilização & Reforma",
+    title: "Edifício Barra Premium Corporate",
+    type: "Retrofit Estrutural & BIM",
     intent: "Reforma Completa",
     vocation: "Comercial / Corporativo de Alta Performance",
     priority: "Execução Técnica & Rigor de Prazos",
     location: "Barra, Salvador, BA",
-    area: "1.850 m²",
+    area: "1.920 m²",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-    desc: "Retrofit completo e compatibilização de infraestrutura predial complexa, eliminando colisões de dutos e cabeamento via modelagem BIM 5D."
+    desc: "Retrofit técnico predial completo e compatibilização estrutural complexa para adequação de lajes corporativas integradas."
   },
   {
     id: 3,
-    title: "Apartamento Vitória Ocean Front",
-    type: "Design & Execução",
+    title: "Apartamento Vitória Ocean View",
+    type: "Reforma & Acabamento Premium",
     intent: "Reforma Completa",
     vocation: "Casa / Residencial de Luxo",
     priority: "Design Autoral & Exclusividade",
     location: "Corredor da Vitória, Salvador, BA",
-    area: "340 m²",
+    area: "380 m²",
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-    desc: "Reforma de altíssimo padrão com integração de varanda gourmet, revestimentos em rochas exóticas e automação de iluminação Dali e áudio hi-end."
+    desc: "Reforma residencial de altíssimo padrão com integração de vãos livres, revestimentos em mármores exóticos importados e acústica refinada."
   },
   {
     id: 4,
-    title: "Sede Executiva Tancredo Neves",
-    type: "Compatibilização BIM",
+    title: "Sede Corporativa Caminho das Árvores",
+    type: "Compatibilização Estrutural",
     intent: "Projeto de Arquitetura",
     vocation: "Comercial / Corporativo de Alta Performance",
     priority: "Tecnologia & Sustentabilidade",
     location: "Caminho das Árvores, Salvador, BA",
-    area: "980 m²",
+    area: "1.100 m²",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-    desc: "Desenvolvimento de projeto executivo integrado com focos bioclimáticos, fachadas ventiladas e eficiência energética baseada em simulações térmicas."
+    desc: "Desenvolvimento técnico predial com foco em eficiência térmica, estruturas metálicas ventiladas e integração de automação predial."
   },
   {
     id: 5,
-    title: "Residência Horto Privée",
-    type: "Obra de Alto Padrão",
+    title: "Residência Horto Florestal",
+    type: "Obra Estrutural Completa",
     intent: "Construir do Zero",
     vocation: "Casa / Residencial de Luxo",
     priority: "Tecnologia & Sustentabilidade",
     location: "Horto Florestal, Salvador, BA",
-    area: "850 m²",
+    area: "920 m²",
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-    desc: "Casa contemporânea em estrutura mista (aço e concreto armado), com captação solar integrada na cobertura e automação de climatização zonal."
+    desc: "Projeto estrutural arrojado com vãos livres de 12 metros, piscina suspensa em concreto aparente e aproveitamento solar inteligente."
   },
   {
     id: 6,
-    title: "Centro Médico Caminho das Árvores",
-    type: "Retrofit Técnico",
+    title: "Retrofit Comercial Rio Vermelho",
+    type: "Reforma & Adequação Técnica",
     intent: "Reforma Completa",
     vocation: "Comercial / Corporativo de Alta Performance",
     priority: "Execução Técnica & Rigor de Prazos",
-    location: "Caminho das Árvores, Salvador, BA",
-    area: "620 m²",
+    location: "Rio Vermelho, Salvador, BA",
+    area: "750 m²",
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80",
-    desc: "Conversão de layout corporativo em clínica médica de alta complexidade seguindo os mais rígidos parâmetros acústicos, elétricos e de assepsia técnica."
+    desc: "Adequação civil complexa para clínica executiva de alta tecnologia, seguindo critérios rigorosos de isolamento acústico e estabilidade de rede."
   }
 ];
 
@@ -129,54 +127,55 @@ export default function App() {
   
   const [shuffleIndex, setShuffleIndex] = useState(0);
   const shufflerData = [
-    { title: "COMPATIBILIZAÇÃO BIM 5D", value: "0 interferências espaciais físicas detectadas entre elétrica e estrutural." },
-    { title: "ESCANEAMENTO LASER 3D", value: "Nuvem de 12 milhões de pontos gerando modelagem topográfica milimétrica." },
-    { title: "LEAN CONSTRUCTION METRICS", value: "Minimização de resíduos de alvenaria e concreto em até 16% via modulação computacional." }
+    { title: "NIVELAMENTO A LASER MILIMÉTRICO", value: "Aferição de nivelamento de lajes de concreto protendido com desvio de 0.0mm." },
+    { title: "COMPATIBILIZAÇÃO ESTRUTURAL 3D", value: "Prevenção de furos e interferências entre armações de aço e instalações elétricas." },
+    { title: "LEAN CONSTRUCTION E COMPRAS", value: "Redução sistemática de desperdícios de argamassas e insumos em até 16%." }
   ];
 
   const typewriterLogs = [
-    "EXECUÇÃO: Carregando projeto executivo compatibilizado... [BIM OK]",
-    "TELEMETRIA: Resistência mecânica aferida em concreto: 35 MPa... [OK]",
-    "CRONOGRAMA: Planejamento físico-financeiro integrado via MS Project... [NO DELAYS]",
-    "STATUS: Canteiro Salvador-Horto operando sob padrões Lean... [100% OPERATIONAL]",
-    "FISCALIZAÇÃO: Termografia infravermelha de tubulações ativa... [0 INFILTRAÇÕES]",
+    "AFERIÇÃO: Sincronizando nível a laser geométrico... [0.0mm ERRO]",
+    "CONCRETAGEM: Aferição térmica de cura do concreto estrutural... [fck 38 MPa OK]",
+    "CRONOGRAMA: Logística de entrega de vigas de aço... [NO DELAYS - RASTREADO]",
+    "ESTRUTURA: Verificação tridimensional de prumo de pilares... [CONFORME]",
+    "CONTROLE: Inspeção de prumo de revestimentos em mármores importados... [APROVADO]",
   ];
 
   // Efeito de Scroll da Navbar
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Efeito 3D de Rotação/Escala do Vídeo do Hero no Scroll (Apple/Premium Style)
+  // Efeito 3D de Rotação/Escala do Vídeo do Hero no Scroll - TOTALMENTE CONTROLADO PELO SCROLL
   useEffect(() => {
     if (!heroVideoContainerRef.current) return;
 
-    // Animação do container do vídeo girando e diminuindo escala no scroll
+    // A rotação e a escala do vídeo ocorrem de forma imediata e controlada pelo scroll (gira e volta)
     gsap.fromTo(heroVideoContainerRef.current,
       {
-        transform: "perspective(1000px) rotateX(0deg) scale(1)",
+        transform: "perspective(1200px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)",
         borderRadius: "0rem",
       },
       {
-        transform: "perspective(1200px) rotateX(12deg) scale(0.92)",
-        borderRadius: "2.5rem",
+        // Gira no eixo X e faz uma inclinação leve no Z para dar sensação 3D de maquete física
+        transform: "perspective(1200px) rotateX(15deg) rotateY(-4deg) rotateZ(2deg) scale(0.86)",
+        borderRadius: "3rem",
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
           end: "bottom top",
-          scrub: true,
+          scrub: 0.5, // Resposta rápida e suave (gira e volta rápido)
         }
       }
     );
 
-    // Efeito parallax de fade-out sutil do vídeo no scroll
+    // Efeito de fade sutil no vídeo para focar no conteúdo de baixo
     gsap.to(heroVideoRef.current, {
-      opacity: 0.35,
-      y: 80,
+      opacity: 0.45,
+      y: 50,
       scrollTrigger: {
         trigger: "#hero",
         start: "top top",
@@ -194,11 +193,11 @@ export default function App() {
       const cards = shufflerContainerRef.current?.children;
       if (cards) {
         gsap.fromTo(cards, 
-          { y: 25, opacity: 0, scale: 0.96 },
-          { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "elastic.out(1, 0.8)", stagger: 0.08 }
+          { y: 15, opacity: 0, scale: 0.97 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out", stagger: 0.05 }
         );
       }
-    }, 4200);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -212,11 +211,11 @@ export default function App() {
       if (charIndex <= currentText.length) {
         setTypewriterText(currentText.substring(0, charIndex));
         charIndex++;
-        timer = setTimeout(type, 30);
+        timer = setTimeout(type, 25);
       } else {
         timer = setTimeout(() => {
           setTypewriterIndex(prev => (prev + 1) % typewriterLogs.length);
-        }, 3000);
+        }, 2800);
       }
     };
     type();
@@ -234,18 +233,18 @@ export default function App() {
 
     if (!cursor || dayCells.length === 0 || !saveBtn) return;
 
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.2 });
 
     tl.to(cursor, { opacity: 1, duration: 0.3 })
-      .to(cursor, { x: 35, y: 30, duration: 1, ease: "power3.out" }) 
-      .to(dayCells[3], { scale: 0.92, duration: 0.1 })
+      .to(cursor, { x: 30, y: 25, duration: 0.8, ease: "power3.out" }) 
+      .to(dayCells[3], { scale: 0.94, duration: 0.1 })
       .to(dayCells[3], { scale: 1, backgroundColor: 'rgba(0, 255, 102, 0.25)', borderColor: '#00FF66', duration: 0.1 }) 
-      .to(cursor, { x: 130, y: 30, duration: 0.8, ease: "power3.out" }) 
-      .to(dayCells[5], { scale: 0.92, duration: 0.1 })
+      .to(cursor, { x: 125, y: 25, duration: 0.7, ease: "power3.out" }) 
+      .to(dayCells[5], { scale: 0.94, duration: 0.1 })
       .to(dayCells[5], { scale: 1, backgroundColor: 'rgba(0, 255, 102, 0.25)', borderColor: '#00FF66', duration: 0.1 }) 
-      .to(cursor, { x: 90, y: 100, duration: 0.9, ease: "power3.out" }) 
-      .to(saveBtn, { scale: 0.96, duration: 0.12 })
-      .to(saveBtn, { scale: 1, borderColor: '#00FF66', color: '#00FF66', duration: 0.12 })
+      .to(cursor, { x: 90, y: 95, duration: 0.8, ease: "power3.out" }) 
+      .to(saveBtn, { scale: 0.97, duration: 0.1 })
+      .to(saveBtn, { scale: 1, borderColor: '#00FF66', color: '#00FF66', duration: 0.1 })
       .to(cursor, { opacity: 0, duration: 0.3 })
       .to(dayCells, { backgroundColor: 'rgba(20, 37, 27, 0.2)', borderColor: 'rgba(20, 37, 27, 0.6)', duration: 0.5, delay: 1 })
       .to(saveBtn, { borderColor: 'rgba(20, 37, 27, 0.6)', color: '#F3F4F6', duration: 0.5 })
@@ -259,16 +258,16 @@ export default function App() {
     const textEl = philosophyTextRef.current;
     
     gsap.fromTo(textEl.querySelectorAll('.split-line'),
-      { y: 40, opacity: 0 },
+      { y: 30, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 0.7,
+        stagger: 0.12,
         ease: "power2.out",
         scrollTrigger: {
           trigger: textEl,
-          start: "top 85%",
+          start: "top 90%",
           toggleActions: "play none none none"
         }
       }
@@ -297,11 +296,11 @@ export default function App() {
     if (customMessage) {
       message = customMessage;
     } else if (selectedIntent || selectedVocation || selectedPriority) {
-      message = `Olá Erguer! Fiz o filtro técnico no site da Erguer para Salvador/BA:\n` +
-                `- Serviço: ${selectedIntent || 'Sob consulta'}\n` +
+      message = `Olá Erguer! Fiz a parametrização do meu perfil técnico de obra em Salvador/BA:\n` +
+                `- Escopo: ${selectedIntent || 'Sob consulta'}\n` +
                 `- Vocação: ${selectedVocation || 'Sob consulta'}\n` +
                 `- Foco: ${selectedPriority || 'Sob consulta'}\n` +
-                `Gostaria de agendar uma apresentação de portfólio e briefing de engenharia!`;
+                `Gostaria de agendar uma reunião de apresentação técnica e briefing estrutural!`;
     }
     return `https://wa.me/${basePhone}?text=${encodeURIComponent(message)}`;
   };
@@ -313,20 +312,22 @@ export default function App() {
       <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-500">
         <nav className={`w-full max-w-5xl rounded-full px-6 py-4 flex items-center justify-between transition-all duration-500 ${
           isScrolled 
-            ? 'glass-pill shadow-2xl py-3 border-emerald/15 translate-y-1' 
+            ? 'glass-pill shadow-2xl py-2.5 border-emerald/15 translate-y-1' 
             : 'bg-transparent border-transparent'
         }`}>
-          {/* Logo oficial da Erguer redimensionada e ajustada */}
-          <a href="#hero" className="flex items-center gap-3 group">
-            <img 
-              src="/logo-erguer.png" 
-              alt="Erguer Projetos e Engenharia" 
-              className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-102"
-            />
+          {/* Logo oficial da Erguer com leve moldura e zoom discreto */}
+          <a href="#hero" className="flex items-center gap-3 group relative transition-transform duration-300 hover:scale-[1.03]">
+            <div className="bg-obsidian-dark/40 border border-white/5 rounded-2xl p-1 md:p-1.5 backdrop-blur-sm">
+              <img 
+                src="/logo-erguer.png" 
+                alt="Erguer Projetos e Engenharia" 
+                className="h-9 sm:h-11 md:h-12 w-auto object-contain"
+              />
+            </div>
           </a>
 
           {/* Links de navegação - Desktop */}
-          <div className="hidden md:flex items-center gap-8 text-xs font-mono text-gray-400">
+          <div className="hidden md:flex items-center gap-8 text-[11px] font-mono text-gray-400">
             <a href="#icp" className="hover:text-emerald transition-colors">/PROJETOS_BA</a>
             <a href="#features" className="hover:text-emerald transition-colors">/TECNOLOGIAS</a>
             <a href="#philosophy" className="hover:text-emerald transition-colors">/MANIFESTO</a>
@@ -339,7 +340,7 @@ export default function App() {
             href={getWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-btn btn-slide-bg flex items-center gap-2 bg-emerald hover:bg-emerald-hover text-black text-[11px] md:text-xs font-mono font-bold px-4 md:px-5 py-2.5 rounded-full"
+            className="magnetic-btn btn-slide-bg flex items-center gap-2 bg-emerald hover:bg-emerald-hover text-black text-[10px] md:text-xs font-mono font-bold px-4 md:px-5 py-2.5 rounded-full"
           >
             FALAR COM ENGENHEIRO
             <ArrowRight size={14} />
@@ -347,10 +348,10 @@ export default function App() {
         </nav>
       </header>
 
-      {/* B. HERO SECTION — "A Cena de Abertura" com Vídeo Rotativo no Scroll */}
+      {/* B. HERO SECTION — Vídeo Rotativo 3D Controlado pelo Scroll */}
       <section id="hero" className="relative h-[100dvh] w-full flex flex-col justify-end px-6 md:px-16 pb-20 overflow-hidden bg-obsidian-dark">
         
-        {/* Container do vídeo com transformação 3D no scroll */}
+        {/* Container do vídeo com transformação 3D e rotação no scroll (Gira e Volta) */}
         <div 
           ref={heroVideoContainerRef} 
           className="absolute inset-0 overflow-hidden z-0 transition-all duration-300 ease-out origin-center"
@@ -362,36 +363,39 @@ export default function App() {
             loop 
             muted 
             playsInline 
-            className="w-full h-full object-cover opacity-35 filter grayscale contrast-115 scale-102"
+            className="w-full h-full object-cover opacity-40 filter contrast-110 scale-102"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/75 to-transparent"></div>
         </div>
 
-        {/* Tipografia de Alto Padrão - Alinhada à esquerda */}
+        {/* Tipografia de Alto Padrão - Blend de Preto, Dourado e Verde */}
         <div className="relative z-20 w-full max-w-4xl flex flex-col items-start mt-20">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald/30 bg-emerald/5 mb-6">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-emerald/30 bg-emerald/5 mb-6">
             <MapPin size={11} className="text-emerald animate-pulse" />
-            <span className="text-[10px] font-mono text-emerald tracking-widest uppercase">SALVADOR, BAHIA</span>
+            <span className="text-[9px] font-mono text-emerald tracking-widest uppercase font-bold">SALVADOR, BAHIA</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-outfit text-white tracking-tight leading-[0.85] mb-4">
-            Erguer é a
-            <span className="text-drama text-emerald italic font-light lowercase text-5xl sm:text-7xl md:text-8xl lg:text-9xl mt-2 tracking-normal block">
-              precisão que desafia o tempo.
+            <span className="bg-gradient-to-r from-[#C9A84C] via-[#00FF66] to-[#C9A84C] bg-[length:200%_auto] bg-clip-text text-transparent animate-metallic-shine font-black tracking-tighter">
+              Erguer
+            </span>{" "}
+            é a
+            <span className="text-drama text-champagne italic font-light lowercase text-5xl sm:text-7xl md:text-8xl lg:text-9xl mt-2 tracking-normal block">
+              precisão que desafia o <span className="text-emerald font-serif">tempo</span>.
             </span>
           </h1>
 
           <p className="text-xs sm:text-sm md:text-base font-sans text-gray-400 max-w-xl mb-8 leading-relaxed">
-            Engenharia de precisão e obras de alto padrão em Salvador e Litoral Norte. 
-            Substituímos o improviso por compatibilização tridimensional BIM e rigor geométrico estrutural.
+            Engenharia civil de precisão e obras de alto padrão residencial e comercial. 
+            Fusão impecável de <span className="text-champagne font-semibold">arquitetura autoral de luxo</span> com <span className="text-emerald font-semibold">segurança estrutural absoluta</span>.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center w-full sm:w-auto">
             <a 
               href="#icp" 
-              className="magnetic-btn btn-slide-bg flex items-center justify-center gap-3 bg-emerald text-black text-xs font-mono font-bold px-8 py-4 rounded-full shadow-lg shadow-emerald/10 text-center"
+              className="magnetic-btn btn-slide-bg flex items-center justify-center gap-3 bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] text-xs font-mono font-bold px-8 py-4 rounded-full shadow-lg shadow-emerald/10 text-center"
             >
-              QUALIFICAR MEU PROJETO (ICP)
+              PARAMETRIZAR PROJETO (ICP)
               <Sliders size={16} />
             </a>
             <a 
@@ -405,24 +409,24 @@ export default function App() {
 
         {/* Scroll Indicator */}
         <div className="absolute right-8 bottom-8 hidden lg:flex flex-col items-end gap-2 font-mono text-[9px] text-gray-500 z-20">
-          <span className="flex items-center gap-1.5 text-emerald"><Video size={10} /> CINEMATIC_STREAM_ACTIVE</span>
+          <span className="flex items-center gap-1.5 text-emerald"><Video size={10} /> HERO_VIDEO // CONTROLANDO NO SCROLL</span>
           <span>LOCATION_LAT: -12.9777° S | LON: -38.5016° W</span>
         </div>
       </section>
 
-      {/* C. ICP DYNAMIC FILTER + PINTEREST SHOWCASE — "Filtro de Projetos" */}
+      {/* C. ICP DYNAMIC FILTER + PINTEREST SHOWCASE */}
       <section id="icp" className="relative py-24 px-4 sm:px-6 md:px-16 bg-obsidian border-t border-obsidian-border">
         <div className="max-w-7xl mx-auto">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="flex flex-col">
-              <span className="text-xs font-mono text-emerald tracking-widest uppercase">QUALIFICAÇÃO PREVENTIVA</span>
+              <span className="text-xs font-mono text-emerald tracking-widest uppercase">CONCURSO DE PROJETOS</span>
               <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
-                Qualifique o seu <span className="text-drama text-emerald italic font-light lowercase">projeto</span>.
+                O que planeja <span className="text-drama text-champagne italic font-light lowercase">construir</span> em Salvador?
               </h2>
             </div>
             <p className="text-xs font-mono text-gray-400 max-w-md">
-              [SISTEMA DE FILTRO ICP]. Configure o perfil da sua obra e veja o portfólio técnico correspondente de nossa engenharia em Salvador/BA.
+              [SISTEMA DE FILTRO ICP]. Configure o perfil da sua obra e veja o portfólio de engenharia civil correspondente de nossa construtora.
             </p>
           </div>
 
@@ -435,9 +439,9 @@ export default function App() {
                 {(selectedIntent || selectedVocation || selectedPriority) && (
                   <button 
                     onClick={resetIcp} 
-                    className="text-[10px] font-mono text-gray-400 hover:text-emerald border border-gray-800 hover:border-emerald px-2 py-0.5 rounded transition-all"
+                    className="text-[10px] font-mono text-champagne hover:text-emerald border border-gray-800 hover:border-emerald px-2 py-0.5 rounded transition-all"
                   >
-                    LIMPAR
+                    RESETAR
                   </button>
                 )}
               </div>
@@ -446,7 +450,7 @@ export default function App() {
               {icpStep === 1 && (
                 <div className="flex flex-col gap-4">
                   <h3 className="text-base sm:text-lg font-bold font-outfit text-white">Qual a intenção da sua obra?</h3>
-                  <p className="text-xs text-gray-400 mb-2">Identificamos o escopo técnico preliminar necessário.</p>
+                  <p className="text-xs text-gray-400 mb-2">Selecione o estágio técnico básico da demanda.</p>
                   
                   {["Construir do Zero", "Reforma Completa", "Projeto de Arquitetura"].map((option) => (
                     <button
@@ -468,7 +472,7 @@ export default function App() {
               {icpStep === 2 && (
                 <div className="flex flex-col gap-4">
                   <h3 className="text-base sm:text-lg font-bold font-outfit text-white">Qual a vocação do espaço?</h3>
-                  <p className="text-xs text-gray-400 mb-2">Segmentamos o padrão normativo e a tipologia da obra.</p>
+                  <p className="text-xs text-gray-400 mb-2">Identificamos o padrão e tipo do imóvel corporativo ou residencial.</p>
                   
                   {["Casa / Residencial de Luxo", "Comercial / Corporativo de Alta Performance"].map((option) => (
                     <button
@@ -494,7 +498,7 @@ export default function App() {
               {icpStep === 3 && (
                 <div className="flex flex-col gap-4">
                   <h3 className="text-base sm:text-lg font-bold font-outfit text-white">Sua prioridade estratégica?</h3>
-                  <p className="text-xs text-gray-400 mb-2">Define o foco do nosso controle operacional de qualidade.</p>
+                  <p className="text-xs text-gray-400 mb-2">Ajusta o nosso controle de engenharia ao seu foco.</p>
                   
                   {["Design Autoral & Exclusividade", "Execução Técnica & Rigor de Prazos", "Tecnologia & Sustentabilidade"].map((option) => (
                     <button
@@ -516,7 +520,7 @@ export default function App() {
                       ← Voltar para Passo 2
                     </button>
                     {selectedPriority && (
-                      <span className="text-[10px] font-mono text-emerald animate-pulse">✓ Filtro Aplicado!</span>
+                      <span className="text-[10px] font-mono text-emerald animate-pulse">✓ Filtro Ativo</span>
                     )}
                   </div>
                 </div>
@@ -526,21 +530,21 @@ export default function App() {
               <div className="mt-8 pt-6 border-t border-obsidian-border flex flex-col gap-2">
                 <span className="text-[9px] font-mono text-gray-500">PARAMETRIZAÇÃO ATIVA</span>
                 <div className="flex flex-wrap gap-2">
-                  <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-black border border-obsidian-border text-gray-300">
-                    📍 Salvador / Litoral Norte
+                  <span className="text-[9px] font-mono px-2.5 py-0.5 rounded bg-black border border-obsidian-border text-gray-300">
+                    📍 Salvador / BA
                   </span>
                   {selectedIntent && (
-                    <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald/10 border border-emerald/30 text-emerald">
+                    <span className="text-[9px] font-mono px-2.5 py-0.5 rounded bg-emerald/10 border border-emerald/30 text-emerald">
                       {selectedIntent}
                     </span>
                   )}
                   {selectedVocation && (
-                    <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald/10 border border-emerald/30 text-emerald">
+                    <span className="text-[9px] font-mono px-2.5 py-0.5 rounded bg-emerald/10 border border-emerald/30 text-emerald">
                       {selectedVocation}
                     </span>
                   )}
                   {selectedPriority && (
-                    <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald/10 border border-emerald/30 text-emerald">
+                    <span className="text-[9px] font-mono px-2.5 py-0.5 rounded bg-emerald/10 border border-emerald/30 text-emerald">
                       {selectedPriority}
                     </span>
                   )}
@@ -552,7 +556,7 @@ export default function App() {
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 w-full flex items-center justify-center gap-2 bg-emerald text-black py-4 rounded-xl text-xs font-mono font-bold hover:bg-emerald-hover transition-colors magnetic-btn"
+                className="mt-6 w-full flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover text-black py-4 rounded-xl text-xs font-mono font-bold transition-colors magnetic-btn"
               >
                 SOLICITAR ORÇAMENTO DESTE PERFIL
                 <ArrowRight size={14} />
@@ -566,7 +570,7 @@ export default function App() {
                 <span className="text-[10px] font-mono text-gray-400">
                   {filteredProjects.length === PROJECTS_DATA.length 
                     ? `EXIBINDO TODOS OS ${PROJECTS_DATA.length} PROJETOS` 
-                    : `EXIBINDO ${filteredProjects.length} PROJETO(S) COMPATÍVEIS`
+                    : `EXIBINDO ${filteredProjects.length} PROJETO(S) CORRESPONDENTES`
                   }
                 </span>
                 {filteredProjects.length === 0 && (
@@ -596,7 +600,7 @@ export default function App() {
                       </div>
 
                       {/* Gradiente Interno */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-85"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-85"></div>
 
                       {/* Conteúdo sobreposto */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-start z-10">
@@ -614,8 +618,8 @@ export default function App() {
                         </div>
 
                         <div className="mt-4 pt-4 border-t border-white/10 w-full flex items-center justify-between text-[10px] font-mono text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <span>ÁREA: {project.area}</span>
-                          <span className="flex items-center gap-1 text-emerald">DETALHES TÉCNICOS <Maximize2 size={10} /></span>
+                          <span className="text-champagne">ÁREA: {project.area}</span>
+                          <span className="flex items-center gap-1 text-emerald">ABRIR PORTFÓLIO <Maximize2 size={10} /></span>
                         </div>
                       </div>
                     </div>
@@ -624,12 +628,12 @@ export default function App() {
               ) : (
                 <div className="flex flex-col items-center justify-center py-20 px-4 border border-dashed border-obsidian-border rounded-[2.5rem]">
                   <Compass size={36} className="text-gray-700 mb-4 animate-spin-slow" />
-                  <h4 className="text-base font-bold text-white mb-2">Combinação específica não catalogada</h4>
+                  <h4 className="text-base font-bold text-white mb-2">Nenhum projeto específico catalogado</h4>
                   <p className="text-xs text-gray-400 text-center max-w-sm leading-relaxed">
-                    Não possuímos imagens no portfólio para esta exata combinação, mas executamos este perfil sob medida em Salvador e Litoral Norte.
+                    Não possuímos imagens no portfólio para esta exata combinação, mas construímos este perfil técnico sob medida em Salvador.
                   </p>
                   <button onClick={resetIcp} className="mt-4 text-[10px] font-mono text-emerald border border-emerald/30 hover:border-emerald px-4 py-2 rounded-full transition-colors">
-                    REDEFINIR CRITÉRIOS (VER TODOS)
+                    VER PORTFÓLIO COMPLETO
                   </button>
                 </div>
               )}
@@ -658,7 +662,7 @@ export default function App() {
                 
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-mono text-emerald border border-emerald/30 px-2 py-0.5 rounded uppercase">
+                    <span className="text-[10px] font-mono text-emerald border border-emerald/30 px-2.5 py-0.5 rounded uppercase">
                       {activeProject.type}
                     </span>
                     <button 
@@ -683,7 +687,7 @@ export default function App() {
                   <div className="grid grid-cols-2 gap-4 border-t border-b border-obsidian-border py-4 mb-6">
                     <div>
                       <span className="block text-[9px] font-mono text-gray-500">ÁREA CONSTRUÍDA</span>
-                      <span className="text-xs sm:text-sm font-bold font-mono text-white">{activeProject.area}</span>
+                      <span className="text-xs sm:text-sm font-bold font-mono text-champagne">{activeProject.area}</span>
                     </div>
                     <div>
                       <span className="block text-[9px] font-mono text-gray-500">DIRETRIZ ICP</span>
@@ -719,42 +723,42 @@ export default function App() {
 
       </section>
 
-      {/* D. FEATURES (Funcionalidades) — "Artefatos Funcionais Interativos" */}
+      {/* D. FEATURES — "Instrumentos de Controle" (Preto, Dourado e Verde) */}
       <section id="features" className="relative py-24 px-4 sm:px-6 md:px-16 bg-obsidian-dark border-t border-obsidian-border">
         <div className="max-w-7xl mx-auto">
           
           <div className="flex flex-col mb-16 max-w-xl">
-            <span className="text-xs font-mono text-emerald tracking-widest uppercase">TECNOLOGIA INTEGRADA</span>
+            <span className="text-xs font-mono text-emerald tracking-widest uppercase">// TECNOLOGIA DE EXECUÇÃO CIVIL</span>
             <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
-              Nossa tecnologia reduz <span className="text-drama text-emerald italic font-light lowercase">atritos</span>.
+              Nossa engenharia reduz <span className="text-drama text-champagne italic font-light lowercase">atritos em obra</span>.
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 mt-4 leading-relaxed">
-              Substituímos suposições por algoritmos de controle geométrico, modelagem estrutural avançada e relatórios técnicos sistemáticos semanais.
+              Erradicamos a improvisação em canteiros de obra. Substituímos suposições por compatibilização geométrica 3D rigorosa e controle rigoroso de tolerâncias de materiais.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* CARD 1 — "Diagnostic Shuffler" */}
-            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card h-[380px]">
+            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card h-[380px] hover:border-champagne/20 transition-colors duration-300">
               <div>
-                <div className="flex items-center gap-2 text-emerald mb-6">
-                  <Layers size={16} />
-                  <span className="text-[9px] font-mono tracking-widest uppercase">COMPATIBILIZAÇÃO BIM</span>
+                <div className="flex items-center gap-2 text-champagne mb-6">
+                  <Layers size={16} className="text-emerald" />
+                  <span className="text-[9px] font-mono tracking-widest uppercase text-champagne">COMPATIBILIZAÇÃO BIM 5D</span>
                 </div>
                 
-                <h3 className="text-lg sm:text-xl font-bold font-outfit text-white mb-2">Engenharia de Precisão Digital</h3>
+                <h3 className="text-lg sm:text-xl font-bold font-outfit text-white mb-2">Projetos Tridimensionais Integrados</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Modelamos a engenharia estrutural de forma sobreposta à arquitetura autoral. Isso garante que cada viga, pilar e duto técnico caiba de forma milimétrica.
+                  Sobreposição de projetos de fundações, estruturas, hidráulica e elétrica. Garantimos que pilares e passagens de dutos caibam de forma exata e antecipada.
                 </p>
               </div>
 
               {/* Shuffler UI */}
               <div ref={shufflerContainerRef} className="relative h-24 bg-black/60 rounded-2xl border border-obsidian-border p-4 flex flex-col justify-center overflow-hidden">
                 <span className="absolute right-3 top-2.5 text-[7px] font-mono text-emerald tracking-widest uppercase animate-pulse">
-                  BIM_ENGINE // LIVE
+                  CONSTRUTORA // MONITOR
                 </span>
-                <span className="text-[9px] font-mono text-emerald mb-1">
+                <span className="text-[9px] font-mono text-champagne mb-1 font-bold">
                   {shufflerData[shuffleIndex].title}
                 </span>
                 <p className="text-xs text-gray-300 leading-tight">
@@ -764,16 +768,16 @@ export default function App() {
             </div>
 
             {/* CARD 2 — "Telemetry Typewriter" */}
-            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card h-[380px]">
+            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card h-[380px] hover:border-champagne/20 transition-colors duration-300">
               <div>
-                <div className="flex items-center gap-2 text-emerald mb-6">
-                  <Cpu size={16} />
-                  <span className="text-[9px] font-mono tracking-widest uppercase">MÉTRICAS E CONTROLE</span>
+                <div className="flex items-center gap-2 text-champagne mb-6">
+                  <Cpu size={16} className="text-emerald" />
+                  <span className="text-[9px] font-mono tracking-widest uppercase text-champagne">TELEMETRIA CIVIL</span>
                 </div>
                 
-                <h3 className="text-lg sm:text-xl font-bold font-outfit text-white mb-2">Gestão Executiva Rigorosa</h3>
+                <h3 className="text-lg sm:text-xl font-bold font-outfit text-white mb-2">Controle Físico-Financeiro Rígido</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Erradicamos improvisos. Acompanhamos o andamento de compras e o cronograma semanal de tarefas com rigor analítico absoluto.
+                  Acompanhamento de cura de concreto, testes de estanqueidade e cronograma de suprimentos rastreado de ponta a ponta sem aditivos de custo.
                 </p>
               </div>
 
@@ -782,9 +786,9 @@ export default function App() {
                 <div className="flex items-center justify-between border-b border-white/5 pb-1">
                   <span className="flex items-center gap-1 text-emerald">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-ping"></span>
-                    LOG_STREAM
+                    TELEMETRIA_OBRA
                   </span>
-                  <span>SYS: 100% OK</span>
+                  <span className="text-[8px] text-champagne font-bold">PRECISÃO_LASER</span>
                 </div>
                 <div className="flex-1 flex items-center">
                   <p className="text-emerald/90 leading-tight">
@@ -796,16 +800,16 @@ export default function App() {
             </div>
 
             {/* CARD 3 — "Cursor Protocol Scheduler" */}
-            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card h-[380px]">
+            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card h-[380px] hover:border-champagne/20 transition-colors duration-300">
               <div>
-                <div className="flex items-center gap-2 text-emerald mb-6">
-                  <Compass size={16} />
-                  <span className="text-[9px] font-mono tracking-widest uppercase">CONCURSO DE PRAZOS</span>
+                <div className="flex items-center gap-2 text-champagne mb-6">
+                  <Compass size={16} className="text-emerald" />
+                  <span className="text-[9px] font-mono tracking-widest uppercase text-champagne">CURADORIA DE FORNECEDORES</span>
                 </div>
                 
-                <h3 className="text-lg sm:text-xl font-bold font-outfit text-white mb-2">Gestão de Fornecedores Premium</h3>
+                <h3 className="text-lg sm:text-xl font-bold font-outfit text-white mb-2">Acabamentos e Fornecedores Premium</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Compatibilidade total com marmorarias, marcenarias de grife e equipes de automação predial de alta competência técnica na Bahia.
+                  Compatibilização rigorosa de marcenarias sob medida, mármores translúcidos importados e esquadrias termoacústicas de alta performance na Bahia.
                 </p>
               </div>
 
@@ -818,8 +822,8 @@ export default function App() {
                 </svg>
 
                 <div className="flex items-center justify-between text-[8px] font-mono text-gray-500 border-b border-white/5 pb-0.5">
-                  <span>GANTT_WEEKLY_TRACKING</span>
-                  <span>MAR - ABR</span>
+                  <span>LOGÍSTICA_DE_MONTAGEM</span>
+                  <span className="text-champagne font-bold">CURADORIA</span>
                 </div>
 
                 <div className="grid grid-cols-7 gap-1 mt-0.5">
@@ -844,141 +848,146 @@ export default function App() {
         </div>
       </section>
 
-      {/* E. PHILOSOPHY — "O Manifesto" */}
+      {/* E. PHILOSOPHY — "O Manifesto" (Preto, Dourado e Verde) */}
       <section id="philosophy" className="relative py-28 px-4 sm:px-6 md:px-16 bg-obsidian-dark overflow-hidden text-center flex flex-col items-center justify-center">
         {/* Imagem de textura sutil com efeito Parallax */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian-dark via-transparent to-obsidian-dark"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-          <div className="w-10 h-10 flex items-center justify-center border border-emerald/30 rounded-full mb-8 bg-emerald/5">
+          <div className="w-10 h-10 flex items-center justify-center border border-champagne/30 rounded-full mb-8 bg-emerald/5">
             <Sparkles size={14} className="text-emerald animate-pulse" />
           </div>
 
           <div ref={philosophyTextRef} className="flex flex-col gap-6 text-center">
-            <p className="split-line text-[9px] font-mono text-emerald tracking-widest uppercase">
+            <p className="split-line text-[9px] font-mono text-emerald tracking-widest uppercase font-bold">
               // O MANIFESTO DA RIGIDEZ TÉCNICA
             </p>
             
             <blockquote className="split-line text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-snug text-gray-300 px-2 sm:px-4">
               "A maioria das construtoras foca apenas em empilhar materiais. Nós erguemos projetos blindando o cronograma através de
-              <span className="text-drama text-emerald italic font-light lowercase text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide px-3 inline-block">
+              <span className="text-drama text-champagne italic font-light lowercase text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide px-3 inline-block">
                 rigor técnico de controle
               </span> 
-              e fidelidade à arquitetura autoral."
+              e fidelidade à <span className="text-emerald">arquitetura autoral de alto padrão</span>."
             </blockquote>
           </div>
 
           <div className="w-16 h-px bg-emerald/20 my-8"></div>
 
           <p className="text-[10px] font-mono text-gray-500 max-w-md">
-            Consolidado na solidez estrutural e conformidade regulamentar. Da Bahia para quem valoriza a engenharia como um ativo de precisão.
+            Consolidado na solidez estrutural e conformidade regulamentar. Da Bahia para quem valoriza a engenharia civil como um ativo de precisão.
           </p>
         </div>
       </section>
 
-      {/* F. PROTOCOL — "Empilhamento Estático/Sticky Fluido" (SUBSTITUINDO GSAP PIN PARA EVITAR TRAVAMENTOS) */}
+      {/* F. PROTOCOL — "Metodologia Construtiva" (Substituindo vibes de TI por vibes de Construtora Civil de Luxo) */}
       <section id="protocol" className="relative bg-obsidian py-24 px-4 sm:px-6 md:px-16 border-t border-obsidian-border">
         <div className="max-w-6xl mx-auto">
           
           <div className="flex flex-col mb-16 max-w-xl">
-            <span className="text-xs font-mono text-emerald tracking-widest uppercase">METODOLOGIA EM 3 ETAPAS</span>
+            <span className="text-xs font-mono text-emerald tracking-widest uppercase">// METODOLOGIA OPERACIONAL</span>
             <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
-              Nosso protocolo de <span className="text-drama text-emerald italic font-light lowercase">execução</span>.
+              Nosso protocolo de <span className="text-drama text-champagne italic font-light lowercase">obras exclusivas</span>.
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 mt-4 leading-relaxed">
-              Estruturamos o ciclo de vida da obra para evitar retrabalhos técnicos, otimizar a compra de materiais e garantir previsibilidade contratual absoluta.
+              Estruturamos o ciclo de vida da construção civil para anular desperdícios, blindar orçamentos e assegurar uma entrega impecável e assistida pós-obra.
             </p>
           </div>
 
-          {/* Sistema Sticky Stacking utilizando CSS robusto e à prova de travamentos */}
           <div className="relative flex flex-col gap-12 sm:gap-24">
             
             {/* ETAPA 01 */}
-            <div className="sticky top-28 bg-[#090f0c] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01]">
+            <div className="sticky top-28 bg-[#090f0c] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
               <div className="w-full lg:w-1/2 flex flex-col items-start">
-                <span className="text-[10px] font-mono text-emerald tracking-wider">PASSO 01 // CONCEPÇÃO E LEVANTAMENTO</span>
+                <span className="text-[10px] font-mono text-emerald tracking-wider font-bold">ETAPA 01 // LEVANTAMENTO TOPOGRÁFICO A LASER & MODELAGEM</span>
                 <h3 className="text-2xl md:text-4xl font-bold font-outfit text-white mt-3 mb-4">
-                  Escaneamento e Estudos BIM
+                  Topografia Tridimensional e Nuvem de Pontos
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
-                  Capturamos o terreno em nuvem de pontos tridimensional por meio de varredura a laser do local. Sincronizamos esses dados diretamente nos softwares BIM para obter a máxima fidelidade milimétrica do terreno real.
+                  Capturamos a planimetria e altimetria do terreno em Salvador por meio de varredura a laser do local. Sincronizamos os dados diretamente para modelagem BIM, garantindo a concordância milimétrica da topografia real com o projeto de fundação.
                 </p>
                 <div className="flex flex-col gap-2 font-mono text-[10px] text-gray-500">
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> LEVANTAMENTO TOPOGRÁFICO A LASER 3D</span>
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> MONTAGEM DE DIRETRIZ E VOLUME BIM INICIAL</span>
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> MAPEAMENTO DE NÍVEIS E DECLIVIDADES VIA SENSOR LASER</span>
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> COMPATIBILIZAÇÃO MILIMÉTRICA DE CORTES E ATERROS</span>
                 </div>
               </div>
 
-              {/* Visual Animado 1 */}
+              {/* Desenho Técnico 1 */}
               <div className="w-full lg:w-1/2 flex items-center justify-center h-48 sm:h-64 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
-                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-gray-600 uppercase">SYS_VIEW: STRUCTURE_BIM_GRID</div>
-                <svg className="w-36 h-36 animate-spin-slow stroke-emerald/20 fill-none" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45" strokeWidth="1" strokeDasharray="4 4" />
-                  <circle cx="50" cy="50" r="32" strokeWidth="1.2" />
-                  <circle cx="50" cy="50" r="20" strokeWidth="1" strokeDasharray="2 2" />
+                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">SYS_VIEW: TOPOGRAPHY_CONTOUR_LINES</div>
+                <svg className="w-36 h-36 animate-spin-slow stroke-emerald/30 fill-none" viewBox="0 0 100 100">
+                  {/* Curvas de nível topográficas */}
+                  <path d="M10,50 Q30,20 50,50 T90,50" strokeWidth="0.8" />
+                  <path d="M20,50 Q35,30 50,50 T80,50" strokeWidth="1" strokeDasharray="3 3" />
+                  <path d="M30,50 Q40,40 50,50 T70,50" strokeWidth="1.2" stroke="#C9A84C" />
+                  <circle cx="50" cy="50" r="45" strokeWidth="0.5" strokeDasharray="5 5" />
                   <path d="M50 5 L50 95 M5 50 L95 50" strokeWidth="0.5" strokeDasharray="1 1" />
-                  <polygon points="50,15 85,50 50,85 15,50" strokeWidth="0.8" />
                 </svg>
               </div>
             </div>
 
             {/* ETAPA 02 */}
-            <div className="sticky top-32 bg-[#060c07] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01]">
+            <div className="sticky top-32 bg-[#060c07] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
               <div className="w-full lg:w-1/2 flex flex-col items-start">
-                <span className="text-[10px] font-mono text-emerald tracking-wider">PASSO 02 // RIGOR TÉCNICO PREVENTIVO</span>
+                <span className="text-[10px] font-mono text-emerald tracking-wider font-bold">ETAPA 02 // RIGOR E COMPATIBILIZAÇÃO</span>
                 <h3 className="text-2xl md:text-4xl font-bold font-outfit text-white mt-3 mb-4">
-                  Compatibilização de Colisões
+                  Compatibilização Estrutural e CÁLCULOS
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
-                  Sobrepomos integralmente as disciplinas complementares (estrutural, hidrossanitária, climatização e elétrica). Resolvemos colisões geométricas no modelo digital antes de dar início à execução física.
+                  Sobrepomos integralmente os projetos complementares estruturais, hidrossanitários, elétricos e de climatização. Eliminamos qualquer colisão física ou retrabalho de furação de vigas e lajes de concreto protendido.
                 </p>
                 <div className="flex flex-col gap-2 font-mono text-[10px] text-gray-500">
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> CO-AUTORIA E COORDENAÇÃO DE DISCIPLINAS</span>
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> 0% DE ADITIVOS DE RECOBRIMENTO POR IMPREVISTO</span>
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> ARMAÇÃO DE AÇO E CONCRETO COMPATIBILIZADOS</span>
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> 0% DE ADITIVOS DE CUSTO POR ERRO DE DETALHAMENTO</span>
                 </div>
               </div>
 
-              {/* Visual Animado 2 */}
+              {/* Desenho Técnico 2 */}
               <div className="w-full lg:w-1/2 flex items-center justify-center h-48 sm:h-64 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
-                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-gray-600 uppercase">SYS_VIEW: CLASH_DETECTION</div>
+                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">SYS_VIEW: STRUCTURAL_GRID_REINFORCEMENT</div>
                 <div className="absolute left-0 right-0 h-[1.5px] bg-emerald/60 shadow-md shadow-emerald animate-[bounce_4.5s_ease-in-out_infinite]"></div>
                 <svg className="w-48 h-28 stroke-emerald/20 fill-none" viewBox="0 0 100 60">
-                  <g className="opacity-15">
-                    <line x1="10" y1="10" x2="90" y2="10" strokeWidth="0.5" />
-                    <line x1="10" y1="30" x2="90" y2="30" strokeWidth="0.5" />
-                    <line x1="10" y1="50" x2="90" y2="50" strokeWidth="0.5" />
+                  {/* Grid de concreto armado / ferragens de viga */}
+                  <g className="opacity-20" stroke="#C9A84C">
+                    <line x1="10" y1="10" x2="90" y2="10" strokeWidth="1" />
+                    <line x1="10" y1="30" x2="90" y2="30" strokeWidth="1" />
+                    <line x1="10" y1="50" x2="90" y2="50" strokeWidth="1" />
+                    <line x1="20" y1="5" x2="20" y2="55" strokeWidth="0.5" />
+                    <line x1="40" y1="5" x2="40" y2="55" strokeWidth="0.5" />
+                    <line x1="60" y1="5" x2="60" y2="55" strokeWidth="0.5" />
+                    <line x1="80" y1="5" x2="80" y2="55" strokeWidth="0.5" />
                   </g>
-                  <path d="M15,40 L35,15 L50,45 L68,20 L85,38" stroke="#00FF66" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="35" cy="15" r="2.5" fill="#00FF66" />
-                  <circle cx="50" cy="45" r="2.5" fill="#00FF66" />
-                  <circle cx="68" cy="20" r="2.5" fill="#00FF66" />
+                  <path d="M15,40 L35,15 L50,45 L68,20 L85,38" stroke="#00FF66" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             </div>
 
             {/* ETAPA 03 */}
-            <div className="sticky top-36 bg-[#050608] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01]">
+            <div className="sticky top-36 bg-[#050608] border border-emerald/10 rounded-[2.5rem] p-8 md:p-12 glass-card shadow-2xl flex flex-col lg:flex-row gap-8 items-center min-h-[380px] transition-transform duration-500 hover:scale-[1.01] hover:border-champagne/20">
               <div className="w-full lg:w-1/2 flex flex-col items-start">
-                <span className="text-[10px] font-mono text-emerald tracking-wider">PASSO 03 // RIGOR TÉCNICO & CONTROLES</span>
+                <span className="text-[10px] font-mono text-emerald tracking-wider font-bold">ETAPA 03 // RIGOR DE ACABAMENTOS & LAUDOS</span>
                 <h3 className="text-2xl md:text-4xl font-bold font-outfit text-white mt-3 mb-4">
-                  Rigor de Acabamento & Entrega
+                  Rigor de Prumos, Curing & Garantia
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
-                  Transformamos plantas digitais em realidade concreta. Executamos canteiros altamente coordenados com verificação de prumo mecânico, ensaios de tração térmica e termografia eletrônica pós-obra com garantia contratual padrão de 5 anos.
+                  Executamos canteiros organizados com ensaios sistemáticos de tração, verificação termográfica infravermelha preventiva de instalações e acompanhamento fotográfico semanal das etapas de acabamentos finos. Entregamos com garantia contratual robusta de 5 anos.
                 </p>
                 <div className="flex flex-col gap-2 font-mono text-[10px] text-gray-500">
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> RELATÓRIOS FOTOGRÁFICOS DE ANÁLISE SEMANAL</span>
-                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> LAUDOS E GARANTIA CONTRATUAL ESCRITA DE 5 ANOS</span>
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> RELATÓRIOS FOTOGRÁFICOS SEMANAIS INTEGRADOS NO PAINEL</span>
+                  <span className="flex items-center gap-1.5"><Check size={11} className="text-emerald" /> LAUDO DE CONFORMIDADE TÉCNICA E GARANTIA DE 5 ANOS</span>
                 </div>
               </div>
 
-              {/* Visual Animado 3 */}
+              {/* Desenho Técnico 3 */}
               <div className="w-full lg:w-1/2 flex items-center justify-center h-48 sm:h-64 bg-black/40 border border-obsidian-border rounded-[2rem] overflow-hidden relative">
-                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-gray-600 uppercase">SYS_VIEW: TELEMETRY_WAVEFORM</div>
+                <div className="absolute right-4 top-3.5 text-[8px] font-mono text-champagne uppercase font-bold">SYS_VIEW: MECHANICAL_TENSION_CURING</div>
                 <svg className="w-52 h-24 stroke-emerald/30 fill-none" viewBox="0 0 200 80">
-                  <path d="M0,40 Q25,15 50,40 T100,40 T150,40 T200,40" strokeWidth="1" strokeDasharray="4 4" />
-                  <path d="M0,40 Q25,5 50,40 T100,40 T150,40 T200,40" stroke="#00FF66" strokeWidth="1.2" className="animate-[dash_8s_linear_infinite]" strokeDasharray="1000" />
+                  {/* Curva de cura e resistência mecânica do concreto */}
+                  <path d="M10,70 Q50,65 80,40 T150,15 T190,12" stroke="#C9A84C" strokeWidth="1.5" />
+                  <path d="M10,70 Q50,70 80,45 T150,20 T190,15" stroke="#00FF66" strokeWidth="1" strokeDasharray="4 4" />
+                  <line x1="10" y1="70" x2="190" y2="70" strokeWidth="0.5" />
+                  <line x1="10" y1="10" x2="10" y2="70" strokeWidth="0.5" />
                 </svg>
               </div>
             </div>
@@ -988,44 +997,44 @@ export default function App() {
         </div>
       </section>
 
-      {/* G. SOLUTIONS / PRICING — "Como Começar" */}
+      {/* G. SOLUTIONS / PRICING (Preto, Dourado e Verde) */}
       <section id="solutions" className="relative py-24 px-4 sm:px-6 md:px-16 bg-obsidian-dark border-t border-obsidian-border">
         <div className="max-w-7xl mx-auto">
           
           <div className="flex flex-col items-center text-center mb-16">
-            <span className="text-xs font-mono text-emerald tracking-widest uppercase">// NOSSAS LINHAS DE ATUAÇÃO</span>
+            <span className="text-xs font-mono text-emerald tracking-widest uppercase font-bold">// SERVIÇOS E ESTUDOS TÉCNICOS</span>
             <h2 className="text-3xl md:text-5xl font-bold font-outfit mt-2">
-              Frentes técnicas estruturadas.
+              Nossas soluções de <span className="text-drama text-champagne italic font-light lowercase">engenharia civil</span>.
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 mt-4 max-w-xl leading-relaxed">
-              Três abordagens de engenharia e modelagem projetadas para viabilizar construções de alto padrão de ponta a ponta.
+              Diferentes frentes de atuação técnica estruturadas sob medida para viabilizar e fiscalizar obras residenciais e corporativas de alto padrão.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             
             {/* Tier 1 */}
-            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card transition-all duration-300 hover:border-emerald/30">
+            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card transition-all duration-300 hover:border-champagne/20">
               <div>
-                <span className="text-[10px] font-mono text-gray-500 block mb-6">01 // ESTUDOS BIM</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-outfit text-white mb-2">Concepção & Modelagem 3D</h3>
+                <span className="text-[10px] font-mono text-gray-500 block mb-6">01 // ESTUDO 3D & CONCEPÇÃO</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-outfit text-white mb-2">Projetos Executivos & 3D</h3>
                 <p className="text-xs text-gray-400 leading-relaxed mb-8">
-                  Destinado a validar tecnicamente o potencial de um terreno ou imóvel em Salvador. Inclui análise prévia de volumetria estrutural, compatibilização com leis municipais e levantamento métrico completo.
+                  Ideal para validação técnica preliminar de um terreno em Salvador/BA. Contempla estudos de volumetria 3D, verificação de índices de gabarito municipais e pré-orçamento detalhado de custos civis.
                 </p>
               </div>
 
               <div>
                 <ul className="flex flex-col gap-3 font-mono text-[9px] text-gray-400 border-t border-obsidian-border pt-6 mb-8">
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> MODELAGEM EM NUVEM DE PONTOS INICIAL</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> AVALIAÇÃO DE GABARITO DE ZONEAMENTO</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> ORÇAMENTO ESTIMADO OPERACIONAL (+/- 15%)</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> MODELAGEM EM NUVEM DE PONTOS DIGITAL</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> COMPATIBILIZAÇÃO COM LEGISLAÇÃO MUNICIPAL</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> ANÁLISE DE ORÇAMENTO E INSUMOS (+/- 15% DESVIO)</li>
                 </ul>
 
                 <a 
-                  href={getWhatsAppLink("Olá Erguer! Tenho interesse na 'Concepção & Modelagem 3D' para planejar tecnicamente meu terreno em Salvador.")}
+                  href={getWhatsAppLink("Olá Erguer! Tenho interesse no pacote 'Estudo Preliminar & Projeto 3D' para planejar tecnicamente meu terreno em Salvador.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center block border border-emerald/30 hover:border-emerald text-white hover:text-black hover:bg-emerald py-4 rounded-xl text-xs font-mono font-bold transition-all magnetic-btn"
+                  className="w-full text-center block border border-emerald/30 hover:border-[#00FF66] text-white hover:text-black hover:bg-[#00FF66] py-4 rounded-xl text-xs font-mono font-bold transition-all magnetic-btn"
                 >
                   SOLICITAR ESTUDO INICIAL
                 </a>
@@ -1033,32 +1042,32 @@ export default function App() {
             </div>
 
             {/* Tier 2 (Destacado) */}
-            <div className="bg-emerald/5 border-2 border-emerald rounded-[2.5rem] p-8 flex flex-col justify-between relative transition-all duration-300">
-              <span className="absolute top-6 right-8 text-[8px] font-mono text-emerald border border-emerald/40 px-2.5 py-0.5 rounded bg-black/80 tracking-widest uppercase">
-                FRENTE PRINCIPAL
+            <div className="bg-emerald/5 border-2 border-emerald rounded-[2.5rem] p-8 flex flex-col justify-between relative transition-all duration-300 hover:border-champagne">
+              <span className="absolute top-6 right-8 text-[8px] font-mono text-champagne border border-champagne/40 px-2.5 py-0.5 rounded bg-black/85 tracking-widest uppercase font-bold">
+                FRENTE CONSTRUTORA
               </span>
               
               <div>
-                <span className="text-[10px] font-mono text-emerald block mb-6">02 // CHAVE NA MÃO</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-outfit text-white mb-2">Gestão e Execução de Obra</h3>
+                <span className="text-[10px] font-mono text-emerald block mb-6">02 // OBRA COMPLETA E CHAVE NA MÃO</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-outfit text-white mb-2">Execução & Gestão de Obras</h3>
                 <p className="text-xs text-gray-300 leading-relaxed mb-8">
-                  Controle total do primeiro piquete topográfico à limpeza final de entrega. Assumimos a responsabilidade física, técnica e civil por meio de uma gestão baseada em metas de cronograma semanais.
+                  Assumimos a responsabilidade física, técnica e civil completa do projeto. Coordenamos as equipes técnicas, a compra programada de materiais e garantimos a fidelidade cirúrgica à arquitetura.
                 </p>
               </div>
 
               <div>
                 <ul className="flex flex-col gap-3 font-mono text-[9px] text-gray-300 border-t border-emerald/20 pt-6 mb-8">
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> GESTÃO DE SUPRIMENTOS E COMPRAS SEM DESVIOS</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> COMPATIBILIDADE PLENA BIM E ARQUITETURA</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> DIÁRIOS FOTOGRÁFICOS DE OBRA EM CLOUD</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> RIGOR CONTRATUAL DE PRAZOS ACORDADOS</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> COMPATIBILIZAÇÃO PLENA ENTRE PROJETOS E CANTEIRO</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> FISCALIZAÇÃO CONSTANTE DE SUPRIMENTOS E CRONOGRAMAS</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> RELATÓRIOS FOTOGRÁFICOS DE ANÁLISE SEMANAL</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> GARANTIA DE PRAZO E ENTREGAS DE ACABAMENTOS</li>
                 </ul>
 
                 <a 
-                  href={getWhatsAppLink("Olá Erguer! Gostaria de agendar uma reunião de apresentação técnica para a 'Gestão e Execução de Obra' em Salvador.")}
+                  href={getWhatsAppLink("Olá Erguer! Gostaria de uma proposta para a 'Execução e Gestão de Obra Completa' da minha obra em Salvador.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center block bg-emerald text-black py-4 rounded-xl text-xs font-mono font-bold shadow-lg shadow-emerald/10 transition-all hover:scale-103 magnetic-btn"
+                  className="w-full text-center block bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] py-4 rounded-xl text-xs font-mono font-extrabold shadow-lg shadow-emerald/10 transition-all hover:scale-103 magnetic-btn"
                 >
                   CONTRATAR ENGENHARIA COMPLETA
                 </a>
@@ -1066,27 +1075,27 @@ export default function App() {
             </div>
 
             {/* Tier 3 */}
-            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card transition-all duration-300 hover:border-emerald/30">
+            <div className="bg-obsidian-card border border-obsidian-border rounded-[2.5rem] p-8 flex flex-col justify-between glass-card transition-all duration-300 hover:border-champagne/20">
               <div>
-                <span className="text-[10px] font-mono text-gray-500 block mb-6">03 // ENGENHARIA LEGAL</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-outfit text-white mb-2">Laudos e Consultoria Estrutural</h3>
+                <span className="text-[10px] font-mono text-gray-500 block mb-6">03 // INTELIGÊNCIA TÉCNICA E FISCALIZAÇÃO</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-outfit text-white mb-2">Laudos e Consultorias</h3>
                 <p className="text-xs text-gray-400 leading-relaxed mb-8">
-                  Consultoria especializada para patologia de estruturas em concreto, laudos de vizinhança preventivos com fé pública técnica e laudos de vistoria técnica em Salvador e região metropolitana.
+                  Inspeções prediais e laudos preventivos de vizinhança. Emissão de pareceres técnicos sobre patologia de concreto armado e consultorias independentes de obras estruturais complexas.
                 </p>
               </div>
 
               <div>
                 <ul className="flex flex-col gap-3 font-mono text-[9px] text-gray-400 border-t border-obsidian-border pt-6 mb-8">
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> EMISSÃO EXCLUSIVA DE ART (CREA-BA)</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> DIAGNÓSTICOS TERMOGRÁFICOS PREVENTIVOS</li>
-                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> LAUDOS DE ENGENHARIA DE VIZINHANÇA</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> EMISSÃO ANOTADA DE ART (CREA-BA)</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> VISTORIAS E LAUDOS PREVENTIVOS DE VIZINHANÇA</li>
+                  <li className="flex items-center gap-1.5"><Check size={10} className="text-emerald" /> TERMOGRAFIA ELETRÔNICA E DETECÇÕES PREVENTIVAS</li>
                 </ul>
 
                 <a 
-                  href={getWhatsAppLink("Olá Erguer! Gostaria de solicitar um orçamento para 'Laudo ou Consultoria Estrutural' para minha edificação.")}
+                  href={getWhatsAppLink("Olá Erguer! Gostaria de contratar a sua assessoria para 'Consultoria & Laudos Técnicos' estruturais.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center block border border-emerald/30 hover:border-emerald text-white hover:text-black hover:bg-emerald py-4 rounded-xl text-xs font-mono font-bold transition-all magnetic-btn"
+                  className="w-full text-center block border border-emerald/30 hover:border-[#00FF66] text-white hover:text-black hover:bg-[#00FF66] py-4 rounded-xl text-xs font-mono font-bold transition-all magnetic-btn"
                 >
                   SOLICITAR LAUDO TÉCNICO
                 </a>
@@ -1106,13 +1115,15 @@ export default function App() {
             
             {/* Bloco de identidade do rodapé */}
             <div className="lg:col-span-6 flex flex-col items-start gap-4">
-              <img 
-                src="/logo-erguer.png" 
-                alt="Erguer Projetos e Engenharia" 
-                className="h-10 md:h-12 w-auto object-contain"
-              />
+              <div className="bg-obsidian-dark/40 border border-white/5 rounded-2xl p-1 md:p-1.5">
+                <img 
+                  src="/logo-erguer.png" 
+                  alt="Erguer Projetos e Engenharia" 
+                  className="h-10 md:h-12 w-auto object-contain"
+                />
+              </div>
               <p className="text-xs sm:text-sm text-gray-400 max-w-sm leading-relaxed">
-                Rigor geométrico, compatibilização estrutural e fidelidade arquitetônica. 
+                Rigor geométrico, compatibilização predial avançada e fidelidade à arquitetura autoral de alto padrão. 
                 Erguendo residências de luxo e espaços corporativos de alta performance em Salvador e Litoral Norte.
               </p>
             </div>
@@ -1123,8 +1134,8 @@ export default function App() {
               <ul className="flex flex-col gap-2.5 text-xs font-mono text-gray-400">
                 <li><a href="#hero" className="hover:text-emerald transition-colors">Retornar ao Topo</a></li>
                 <li><a href="#icp" className="hover:text-emerald transition-colors">Portfólio & Filtro ICP</a></li>
-                <li><a href="#features" className="hover:text-emerald transition-colors">Tecnologia Construtiva</a></li>
-                <li><a href="#protocol" className="hover:text-emerald transition-colors">Metodologia e Fases</a></li>
+                <li><a href="#features" className="hover:text-emerald transition-colors">Controles de Canteiro</a></li>
+                <li><a href="#protocol" className="hover:text-emerald transition-colors">Metodologia Construtiva</a></li>
               </ul>
             </div>
 
