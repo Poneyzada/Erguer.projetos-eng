@@ -297,7 +297,7 @@ export default function App() {
   };
 
   const getWhatsAppLink = (customMessage = null) => {
-    const basePhone = "5571999999999"; 
+    const basePhone = "5571992515641"; 
     let message = "Olá Erguer! Gostaria de conversar com um engenheiro técnico sobre meu projeto executivo em Salvador.";
     if (customMessage) {
       message = customMessage;
@@ -714,7 +714,7 @@ export default function App() {
                     href={getWhatsAppLink(`Olá Erguer! Fiquei extremamente interessado no projeto "${activeProject.title}" localizado em Salvador/BA. Gostaria de solicitar informações técnicas sobre soluções similares.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full text-center bg-[#00FF66] hover:bg-[#00E65C] text-[#050508] py-4 rounded-xl text-xs font-mono font-extrabold transition-all duration-300 shadow-md shadow-emerald/10 magnetic-btn"
+                    className="w-full text-center border border-[#00FF66] hover:bg-[#00FF66]/10 text-[#00FF66] hover:text-[#00E65C] py-4 rounded-xl text-xs font-mono font-extrabold transition-all duration-300 shadow-md shadow-emerald/5 magnetic-btn"
                   >
                     INICIAR ESTUDO SEMELHANTE
                   </a>
@@ -1179,7 +1179,7 @@ export default function App() {
                 </li>
                 <li className="flex items-center gap-1.5">
                   <Smartphone size={13} />
-                  (71) 99999-9999
+                  (71) 99251-5641
                 </li>
                 <li>Salvador, Bahia, Brasil.</li>
               </ul>
